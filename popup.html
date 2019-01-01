@@ -21,10 +21,14 @@
             border-collapse: collapse;
             border: solid 1px #dddddd;
             text-align: left;
+            padding : 7px;
         }
 
         tbody tr:nth-child(2n+1) {
             background-color: #f5f3f3;
+        }
+        th:nth-child(2n+1), td:nth-child(2n+1) {
+            width:20%;
         }
     </style>
 </head>
@@ -32,10 +36,6 @@
 <body>
     <!-- OG Tag 목록 보여주기-->
     <p>OG Tag Preview</p>
-    <p id='urls'></p>
-    <button id='getUrl'>현재 탭 보기</button>
-
-
 
     <table>
         <thead>
@@ -63,13 +63,5 @@
             </tr>
         </tbody>
     </table>
-
-
-
-
-
-
 </body>
-
-
 </html>

@@ -1,8 +1,12 @@
 /* 
-    version : 1.0
-    background script 없이 현재 탭의 링크 받아오기 
+    [version : 1.0]
+    Content Scripts, background script 없이 현재 탭의 링크 받아오기 
     링크의 dom객체를 한번에 받아와서 meta태그 중 og태그를 파싱하여 배열로 저장 
     popup.html에 og태그 출력
+
+    [version : 1.1]
+    popup.html의 버튼 클릭 없이 icon 클릭시 바로 로딩 
+
 */
 
 var xhr;
@@ -23,23 +27,18 @@ function getCurrentTabUrl(callback) {
     });
 }
 
-function renderURL(statusText) {
-    document.getElementById('urls').textContent = statusText;
-}
-
-
 // 해딩 URL의 객체들 받아오기 
 function parse(html) {
     var el = document.createElement('div');
     el.innerHTML = html;
 
-    try{
+    try {
         var title = el.querySelector('meta[property="og:title"]').getAttribute('content');
         var url = el.querySelector('meta[property="og:url"]').getAttribute('content');
         var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
         var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
 
-    }catch{//og태그가 없는 경우
+    } catch{//og태그가 없는 경우
         var title = 'x';
         var url = 'x';
         var description = 'x';
@@ -48,9 +47,9 @@ function parse(html) {
     document.querySelector('#og_title').innerText = title;
     document.querySelector('#og_url').innerText = url;
     document.querySelector('#og_description').innerText = description;
-    document.querySelector('#og_image').innerHTML = "<img src='"+image+"'>"
+    document.querySelector('#og_image').innerHTML = "<img src='" + image + "'>"
 
-    
+
 
 }
 
@@ -77,18 +76,9 @@ function getURLDom(targetURL) {
 
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
-
-    // when click, get current page link
-    var link = document.getElementById('getUrl');
-
-    link.addEventListener('click', function () {
-        getCurrentTabUrl(function (url) {
-            renderURL(url);
-            getURLDom(url);
-        });
+    getCurrentTabUrl(function (url) {
+        getURLDom(url);
     });
-
 });
 

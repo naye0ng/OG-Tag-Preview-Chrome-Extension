@@ -1,9 +1,8 @@
 {
     "name": "OG Tag Preview",
-    "description": "You can preview OG Tag on website",
-    "version": "0.1",
+    "description": "If you use this tool, you can preview the OG tag on your website",
+    "version": "1.1",
     "manifest_version": 2,
-
     "browser_action": {
         "default_icon": "icon.png",
         "default_popup": "popup.html"
@@ -13,4 +12,4 @@
         "<all_urls>",
         "tabs"
     ]
-  }
+}

@@ -1,20 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>OG Popup</title>
-        <style>
-            body {width : 500px}
-        </style>
-    </head>
-    <body>
-        <!-- OG Tag 목록 보여주기-->
-        <p>OG Tag Preview</p>
-        <p id='urls'></p>
-        <button id ='getUrl'>현재 탭 보기</button>
 
-    </body>
-    <script src="popup.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OG Popup</title>
+    <style>
+        body {
+            width: 500px
+        }
+    </style>
+</head>
+
+<body>
+    <!-- OG Tag 목록 보여주기-->
+    <p>OG Tag Preview</p>
+    <p id='urls'></p>
+    <button id='getUrl'>현재 탭 보기</button>
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>OG Tag</th>
+                <th>contents</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>title</td>
+                <td id='og_title'></td>
+            </tr>
+            <tr>
+                <td>url</td>
+                <td id='og_url'></td>
+            </tr>
+            <tr>
+                <td>description</td>
+                <td id='og_description'></td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td id='og_image'></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+
+</body>
+<script src="popup.js"></script>
+
 </html>

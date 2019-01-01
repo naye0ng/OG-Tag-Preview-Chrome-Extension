@@ -10,26 +10,26 @@ var xhr;
 // 현재 탭의 링크 받기 
 function getCurrentTabUrl(callback) {
     var queryInfo = {
-      active: true,
-      currentWindow: true
+        active: true,
+        currentWindow: true
     };
-  
-    chrome.tabs.query(queryInfo, function(tabs) {
-      var tab = tabs[0];
-      var url = tab.url;
-  
-      callback(url);
-  
+
+    chrome.tabs.query(queryInfo, function (tabs) {
+        var tab = tabs[0];
+        var url = tab.url;
+
+        callback(url);
+
     });
 }
-  
+
 function renderURL(statusText) {
     document.getElementById('urls').textContent = statusText;
 }
 
 
 // 해딩 URL의 객체들 받아오기 
-function parse(html){
+function parse(html) {
     var el = document.createElement('div');
     el.innerHTML = html;
 
@@ -38,27 +38,32 @@ function parse(html){
     var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
     var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
 
-    alert(image);
-    
+    document.querySelector('#og_title').innerText = title;
+    document.querySelector('#og_url').innerText = url;
+    document.querySelector('#og_description').innerText = description;
+    document.querySelector('#og_image').innerHTML = "<image src='"+image+"'>"
+
+    //alert(image);
+
 }
 
-function handleStateChange(){
-    if(xhr.readyState==4){
-        if(xhr.status==200){
+function handleStateChange() {
+    if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
             parse(xhr.responseText);
             //alert("성공 : "+xhr.responseText);
         }
-        else{
-            alert("실패 : "+xhr.status);
+        else {
+            alert("실패 : " + xhr.status);
         }
     }
-}  
- 
+}
+
 function getURLDom(targetURL) {
 
     xhr = new XMLHttpRequest();
-    xhr.onreadystatechange=handleStateChange;
-    xhr.open('GET',targetURL,true);
+    xhr.onreadystatechange = handleStateChange;
+    xhr.open('GET', targetURL, true);
     //xhr.setRequestHeader("content-Type","application/json;charset=utf-8");
     //xhr.send(JSON.stringify(msg));
     xhr.send();
@@ -66,13 +71,13 @@ function getURLDom(targetURL) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  
+document.addEventListener('DOMContentLoaded', function () {
+
     // when click, get current page link
     var link = document.getElementById('getUrl');
-  
-    link.addEventListener('click', function() {
-        getCurrentTabUrl(function(url) {
+
+    link.addEventListener('click', function () {
+        getCurrentTabUrl(function (url) {
             renderURL(url);
             getURLDom(url);
         });

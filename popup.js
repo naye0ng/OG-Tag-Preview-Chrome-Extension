@@ -32,13 +32,15 @@ function renderURL(statusText) {
 function parse(html){
     var el = document.createElement('div');
     el.innerHTML = html;
+
+    var title = el.querySelector('meta[property="og:title"]').getAttribute('content');
+    var url = el.querySelector('meta[property="og:url"]').getAttribute('content');
+    var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
+    var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
+
+    alert(image);
     
-    var meta = el.querySelectorAll('meta');
-    alert("성공 : "+meta);
-
-
 }
-
 
 function handleStateChange(){
     if(xhr.readyState==4){
@@ -50,7 +52,7 @@ function handleStateChange(){
             alert("실패 : "+xhr.status);
         }
     }
-  }  
+}  
  
 function getURLDom(targetURL) {
 

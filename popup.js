@@ -33,17 +33,24 @@ function parse(html) {
     var el = document.createElement('div');
     el.innerHTML = html;
 
-    var title = el.querySelector('meta[property="og:title"]').getAttribute('content');
-    var url = el.querySelector('meta[property="og:url"]').getAttribute('content');
-    var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
-    var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
+    try{
+        var title = el.querySelector('meta[property="og:title"]').getAttribute('content');
+        var url = el.querySelector('meta[property="og:url"]').getAttribute('content');
+        var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
+        var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
+
+    }catch{//og태그가 없는 경우
+        var title = 'x';
+        var url = 'x';
+        var description = 'x';
+    }
 
     document.querySelector('#og_title').innerText = title;
     document.querySelector('#og_url').innerText = url;
     document.querySelector('#og_description').innerText = description;
-    document.querySelector('#og_image').innerHTML = "<image src='"+image+"'>"
+    document.querySelector('#og_image').innerHTML = "<img src='"+image+"'>"
 
-    //alert(image);
+    
 
 }
 

@@ -5,10 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="popup.js"></script>
     <title>OG Popup</title>
     <style>
         body {
             width: 500px
+        }
+
+        img {
+            max-width: 400px;
+        }
+
+        table,tr,th,td {
+            width: 100%;
+            border-collapse: collapse;
+            border: solid 1px #dddddd;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(2n+1) {
+            background-color: #f5f3f3;
         }
     </style>
 </head>
@@ -54,6 +70,6 @@
 
 
 </body>
-<script src="popup.js"></script>
+
 
 </html>

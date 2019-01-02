@@ -7,9 +7,14 @@
     [version : 1.1]
     popup.html의 버튼 클릭 없이 icon 클릭시 바로 로딩 
 
+    [version : 2.0]
+    (선택) Facebook,Naver,Twitter 등 각 서비스별로 최적화된 미리보기 제공
+
 */
 
 var xhr;
+var url;
+var show_btn;
 
 // 현재 탭의 링크 받기 
 function getCurrentTabUrl(callback) {
@@ -20,7 +25,7 @@ function getCurrentTabUrl(callback) {
 
     chrome.tabs.query(queryInfo, function (tabs) {
         var tab = tabs[0];
-        var url = tab.url;
+        url = tab.url;
 
         callback(url);
 
@@ -34,24 +39,53 @@ function parse(html) {
 
     try {
         var title = el.querySelector('meta[property="og:title"]').getAttribute('content');
-        var url = el.querySelector('meta[property="og:url"]').getAttribute('content');
-        var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
-        var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
 
-    } catch{//og태그가 없는 경우
-        var title = 'x';
-        var url = 'x';
+    } catch{
+        //facebook과 naver의 경우, title 태그 찾기
+        try {
+            var title = el.querySelector('title').innerText;
+        } catch{
+            var title = 'x';
+        }
+
+    }
+    try {//url을 굳이 가져올 필요가 있음?엥>??
+        var og_url = el.querySelector('meta[property="og:url"]').getAttribute('content');
+    } catch{
+        //현재탭의 url할당
+        var og_url = url;
+    }
+    try {
+        var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
+    } catch{
+        //description생략시 뭘 가져올까?
         var description = 'x';
+
+    }
+    try {
+        var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
+        //이미지의 url이 경로로 나와있는 경우, url 유효성검사
+        var checkURL = checkDetailUrl(image);
+        
+        if (!checkURL) image = url+image;
+    
+    } catch{
+        var image = '';
     }
 
     document.querySelector('#og_title').innerText = title;
-    document.querySelector('#og_url').innerText = url;
+    document.querySelector('#og_url').innerText = og_url;
     document.querySelector('#og_description').innerText = description;
     document.querySelector('#og_image').innerHTML = "<img src='" + image + "'>"
 
-
-
 }
+
+//URL유효성검사
+function checkDetailUrl(strUrl) {
+    var expUrl = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi;
+    return expUrl.test(strUrl);
+}
+
 
 function handleStateChange() {
     if (xhr.readyState == 4) {
@@ -77,6 +111,20 @@ function getURLDom(targetURL) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    var naver = document.getElementById('naver');
+    var facebook = document.getElementById('facebook');
+
+    show_btn = 'naver';
+    naver.addEventListener('click', function () {
+        show_btn = 'naver';
+        alert('n')
+    })
+    facebook.addEventListener('click', function () {
+        show_btn = 'facebook'
+        alert('f')
+    })
+
     getCurrentTabUrl(function (url) {
         getURLDom(url);
     });

@@ -6,6 +6,7 @@
 
     [version : 1.1]
     popup.html의 버튼 클릭 없이 icon 클릭시 바로 로딩 
+    (추가) http://d2campusfest.kr/6th/의 og:image에 파일경로가 들어가 있는 경우
 
     [version : 2.0]
     (선택) Facebook,Naver,Twitter 등 각 서비스별로 최적화된 미리보기 제공
@@ -58,7 +59,7 @@ function parse(html) {
     try {
         var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
     } catch{
-        //description생략시 뭘 가져올까?
+        //description생략시 뭘 가져올까?...
         var description = 'x';
 
     }
@@ -66,13 +67,21 @@ function parse(html) {
         var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
         //이미지의 url이 경로로 나와있는 경우, url 유효성검사
         var checkURL = checkDetailUrl(image);
-        
+
         if (!checkURL) image = url+image;
     
     } catch{
-        var image = '';
+        var image = './not-found.png';
     }
 
+    //버튼에 따라 다르게 넣어야 하는거 추가
+    //카드에 넣기
+    document.querySelector('#title_box').innerText = title;
+    document.querySelector('#url_box').innerText = og_url;
+    document.querySelector('#description_box').innerText = description;
+    document.querySelector('#img_box').innerHTML = "<img src='" + image + "'>"
+
+    
     document.querySelector('#og_title').innerText = title;
     document.querySelector('#og_url').innerText = og_url;
     document.querySelector('#og_description').innerText = description;
@@ -129,4 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
         getURLDom(url);
     });
 });
+
+//객체 프로퍼티 가져와서 할당하는 함수
+
+
 

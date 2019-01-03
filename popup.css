@@ -1,0 +1,259 @@
+body {
+    width: 500px;
+}
+
+body > * {
+    padding: 0px;
+    overflow: hidden;
+}
+body,div,p,input {
+    margin: 0;
+    padding : 0;
+}
+
+a:link {text-decoration: none; color: #333;}
+a:visited {text-decoration: none; color: #333;}
+a:active {text-decoration: none; color: #333;}
+a:hover {text-decoration: none; color: #333;}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.unvisi{display:none;}
+
+.f_l {float:left;}
+.f_r {float:right;}
+
+.c_l{clear:left;}
+.c_r{clear:right;}
+.c_b{clear:both;}
+
+.in_bl {display:inline-block}
+.over_h {overflow:hidden;}
+
+.wth_100 {width:100%;}
+.wth_90 {width:90%;}
+.wth_80 {width:80%;}
+.wth_70 {width:70%;}
+.wth_75 {width:75%;}
+.wth_60 {width:60%;}
+.wth_50 {width:50%;}
+.wth_45 {width:45%;}
+.wth_40 {width:40%;}
+.wth_30 {width:30%;}
+.wth_25 {width:25%;}
+.wth_20 {width:20%;} 
+.wth_15 {width:15%;}
+.wth_10 {width:10%;}
+.wth_5 {width:5%;}
+
+
+.full_margin{
+    margin: 10px 10px 10px 10px;
+}
+
+*:focus {
+    outline: none;
+}
+
+.sub_title{
+    font-size: 15px;
+    margin: 10px 0;
+}
+/* 링크부분 */
+#url_section{
+    background-color: #394959;
+    margin:0;
+    padding :10px 10px 0;
+}
+
+#in_url{
+    height:40px;
+    box-sizing: border-box;
+    border:none;
+    border-right:0px; 
+    border-top:0px; 
+    border-left:0px; 
+    border-bottom:0px;
+    padding: 0 10px;
+}
+#submit_url{
+    height:40px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top:10px;
+    outline: none !important;
+    color: #ffffff;
+    cursor:pointer;
+}
+
+/* card 부분 */
+#card_section{
+    background-color: #E9EBEE;
+    padding: 30px 0;
+}
+
+#square_box,
+#rect_box{
+    display:none;
+    text-align: center;
+
+}
+
+#square_card,
+#rect_card{
+    width: 450px;
+    display: inline-block;
+}
+
+#square_card{
+    height: 110px;
+}
+#rect_card{
+    height:auto;
+    
+}
+
+#square_img{
+    width: 110px;
+}
+
+#rect_img {
+    width:100%;
+    max-width: 450px;
+    height:270px;
+}
+
+#square_img > img,
+#rect_img > img{
+    width:100%;
+}
+
+#square_txt_outter{
+    /*position: absolute;*/
+    width: 340px;
+    height:100%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 21px 26px 18px;
+    box-sizing: border-box;
+}
+#rect_txt_outter{
+    width: 100%;
+    left: 0px;
+    right: 0;
+    top: 270px;
+    padding: 21px 26px 18px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, .08);
+}
+
+#square_txt_inner,
+#rect_txt_inner{
+    display:inline-block;
+    width: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+
+.n_title, 
+.n_description, 
+.n_url{
+    text-align: left;
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: 1;
+}
+
+.n_title {
+    font-weight: 700;
+    font-size: 15px;
+    color: #333;
+}
+
+.n_description {
+    margin-top: 7px;
+    font-size: 13px;
+    color: #999;
+}
+
+.n_url {
+    margin-top: 9px;
+    font-size: 13p;
+    color: #00a832;
+    text-decoration: none;
+}
+
+#rect_description{
+    display: -webkit-box;
+    white-space: normal !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 36px;
+    line-height: 18px;
+    overflow: hidden;
+}
+
+.boundary {
+    display: block;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    text-decoration: none;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
+    border: 1px solid rgba(0, 0, 0, .1);
+}
+
+
+
+
+
+
+
+#btn_area,
+#contents_area {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.custom_btn {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border: solid 1px #dfdfdf;
+    border-radius: 15%;
+    text-align: center;
+}
+
+table img {
+    max-width: 400px;
+}
+
+table,
+tr,
+th,
+td {
+    width: 100%;
+    border-collapse: collapse;
+    border: solid 1px #dddddd;
+    text-align: left;
+    padding: 7px;
+}
+
+tbody tr:nth-child(2n+1) {
+    background-color: #f5f3f3;
+}
+
+th:nth-child(2n+1),
+td:nth-child(2n+1) {
+    width: 20%;
+}

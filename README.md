@@ -17,11 +17,8 @@ og:title, og:description, og:image, og:url
 
 2. og:image
 [네이버 블로그의 링크삽입을 참고]
->지정된 이미지 경로가 올바르지 않은 경우(상대경로) 올바른 url을 생성합니다.
-
-<br />
-
->이미지의 크기에 따른 미리보기 화면의 변화를 확인 할 수 있습니다.
+> 지정된 이미지 경로가 올바르지 않은 경우(상대경로) 올바른 url을 생성합니다.
+> 이미지의 크기에 따른 미리보기 화면의 변화를 확인 할 수 있습니다.
 <img width="400px" src='image/under450.png'>
 <img width="400px" src='image/up450.png'>
 <img width="400px" src='image/none.png'>

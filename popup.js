@@ -4,10 +4,6 @@
     링크의 dom객체를 한번에 받아와서 meta태그 중 og태그를 파싱하여 배열로 저장 
     popup.html에 og태그 출력
 
-    [version : 1.1]
-    popup.html의 버튼 클릭 없이 icon 클릭시 바로 로딩 
-    (추가) http://d2campusfest.kr/6th/의 og:image에 파일경로가 들어가 있는 경우
-
     [version : 2.0]
     Naver 서비스의 최적화된 미리보기 제공
     익스텐션 자체에서 url 검색기능 추가
@@ -159,8 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var facebook = document.getElementById('facebook');
     var in_url = document.getElementById("in_url");
     var search = document.getElementById('submit_url');
-    //이부분 추가해야 함
-    /*
+/*
     show_btn = 'naver';
     naver.addEventListener('click', function () {
         show_btn = 'naver';
@@ -181,12 +176,17 @@ document.addEventListener('DOMContentLoaded', function () {
         //url 재검색
         document.querySelector('#rect_box').style.display = "none";
         document.querySelector('#square_box').style.display = "none";
-        try {
-            var list = document.getElementById("rect_img");
-            list.removeChild(list.childNodes[0]);
 
-        } catch{
-            var list = document.getElementById("square_img");
+
+        var c = document.getElementById('rect_img').childElementCount;
+        if(c==0){
+            var c = document.getElementById('square_img').childElementCount;
+            if(c!=0){//정사각형 이미지 존재 
+                var list = document.getElementById("square_img");
+                list.removeChild(list.childNodes[0]);
+            }
+        }else{//직사각형 이미지 존재
+            var list = document.getElementById("rect_img");
             list.removeChild(list.childNodes[0]);
         }
         getURLDom(url);

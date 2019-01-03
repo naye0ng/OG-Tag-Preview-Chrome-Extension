@@ -11,89 +11,80 @@
 </head>
 
 <body>
-    <!-- OG Tag 목록 보여주기-->
-    <!--button id ='naver'><img src='/cc_facebook.png' alt='f' class='custom_btn'></button>
-    <button id ='facebook'>F</button-->
-    
-    <!--div id='contents_area'>
-        <div id='preview_box' class='boundary'>
-            <div id='img_box'></div>
-            <div id='text_box_out'>
-                <div id='text_box_in' class='in_bl'>
-                    <div id='c_box' class='child_text'></div>
-                    <div id='description_box' class='child_text'></div>
-                    <div id='url_box' class='child_text'></div>
-                </div>
-            </div>
-        </div>
-    </div-->
-
-    <p>OG Tag Preview</p>
-    <div id='btn_area'>
-        <div class='custom_btn in_bl' id='naver'>n</div>
-        <div class='custom_btn in_bl' id='facebook'>f</div>
-    </div>
-
-    <!--정사각형 카드-->
-    <div id='square_box'>
-
-        <div id='square_card' class='boundary'>
-            <!--card 이미지-->
-            <div id='square_img' class='in_bl f_l over_h'></div>
-            <!--여기부터 택스트-->
-            <div id='square_txt_outter' class='in_bl f_l'>
-                <div id='square_txt_inner'>
-                    <div class='n_title'></div>
-                    <div class='n_description'></div>
-                    <div class='n_url'tt></div>
-                </div>
-            </div>
+    <!--p>OG Tag Preview</p-->
+    <div id='url_section'>
+        <div id='url_box' class='wth_100'>
+            <input type="text" id='in_url' class='in_bl f_l wth_80'>
+            <div id='submit_url' class='in_bl f_r wth_20'>Change</div>
         </div>
     </div>
 
-    <!--직사각형 카드-->
-    <div id='rect_box'>
-        <div id='rect_card' class='boundary'>
-            <!--card 이미지-->
-            <div id='rect_img' class='over_h'></div>
-            <!--여기부터 택스트-->
-            <div id='rect_txt_outter'>
-                <div id='rect_txt_inner'>
-                    <div class='n_title'></div>
-                    <div id='rect_description' class='n_description'></div>
-                    <div class='n_url'></div>
+    <div id='card_section'>
+        <div id='btn_area'>
+            <div class='custom_btn in_bl' id='naver'>n</div>
+            <div class='custom_btn in_bl' id='facebook'>f</div>
+        </div>
+        <!--정사각형 카드-->
+        <div id='square_box'>
+            <div id='square_card' class='boundary'>
+                <!--card 이미지-->
+                <div id='square_img' class='in_bl f_l over_h'></div>
+                <!--여기부터 택스트-->
+                <div id='square_txt_outter' class='in_bl f_l'>
+                    <div id='square_txt_inner'>
+                        <div class='n_title'></div>
+                        <div class='n_description'></div>
+                        <div class='n_url'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--직사각형 카드-->
+        <div id='rect_box'>
+            <div id='rect_card' class='boundary'>
+                <!--card 이미지-->
+                <div id='rect_img' class='over_h'></div>
+                <!--여기부터 택스트-->
+                <div id='rect_txt_outter'>
+                    <div id='rect_txt_inner'>
+                        <div class='n_title'></div>
+                        <div id='rect_description' class='n_description'></div>
+                        <div class='n_url'></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <p>OG Tag Preview list</p>
-    <table>
-        <thead>
-            <tr>
-                <th>OG Tag</th>
-                <th>contents</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>title</td>
-                <td id='og_title'></td>
-            </tr>
-            <tr>
-                <td>url</td>
-                <td id='og_url'></td>
-            </tr>
-            <tr>
-                <td>description</td>
-                <td id='og_description'></td>
-            </tr>
-            <tr>
-                <td>image</td>
-                <td id='og_image'></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class='full_margin'>
+        <p>OG Tag Preview list</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>OG Tag</th>
+                    <th>contents</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>title</td>
+                    <td id='og_title'></td>
+                </tr>
+                <tr>
+                    <td>url</td>
+                    <td id='og_url'></td>
+                </tr>
+                <tr>
+                    <td>description</td>
+                    <td id='og_description'></td>
+                </tr>
+                <tr>
+                    <td>image</td>
+                    <td id='og_image'></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

@@ -108,94 +108,6 @@ function parse(html) {
 
     }
 
-    // text 넣기 
-    /*document.querySelector('.n_title').innerText = title;
-    document.querySelector('.n_description').innerText = description;
-    document.querySelector('.n_url').innerText = url.split('/')[2];
-
-    alert(document.querySelectorAll('.n_title').length);
-    /*
-    var show_div = 'n';
-    //show 버튼 값에 따라 다르게 할당
-    if (show_btn == 'facebook') {
-        show_div == 'f'
-    }
-
-
-
-
-
-
-
-
-    //이미지 크기 알아냐려면, 미리 img태그랑 src 생성해서 
-
-
-
-
-    /*
-    
-    
-        try {
-            var title = el.querySelector('meta[property="og:title"]').getAttribute('content');
-    
-        } catch{
-            //facebook과 naver의 경우, title 태그 찾기
-            try {
-                var title = el.querySelector('title').innerText;
-            } catch{
-                var title = 'x';
-            }
-    
-        }
-        try {//url을 굳이 가져올 필요가 있음?ㅇㅇ
-            var og_url = el.querySelector('meta[property="og:url"]').getAttribute('content');
-        } catch{
-            //현재탭의 url할당
-            var og_url = url;
-        }
-        try {
-            var description = el.querySelector('meta[property="og:description"]').getAttribute('content');
-        } catch{
-            //description생략시 뭘 가져올까?...  h1태그? > h2 > h3 > p 순인가??
-            var description = 'x';
-    
-        }
-        try {
-            var image = el.querySelector('meta[property="og:image"]').getAttribute('content');
-            //이미지의 url이 경로로 나와있는 경우, url 유효성검사
-            var checkURL = checkDetailUrl(image);
-    
-            if (!checkURL) image = url+image;
-        
-        } catch{
-            //facebook, naver둘다 이미지 없으면 안보여줌
-        }
-    
-        //버튼에 따라 다르게 넣어야 하는거 추가
-        //카드에 넣기
-        document.querySelector('#title_box').innerText = title;
-    
-    
-        //naver : url 변환 해줘야 혀
-        document.querySelector('#url_box').innerText = og_url;
-        document.querySelector('#description_box').innerText = description;
-    
-        //이미지 존재 유무 확인하여 태그와 속성을 변경한다.
-        /*
-        if(!image){
-            document.querySelector('#img_box').style.display = "none";
-            document.querySelector('#text_box_out').style.left = 0;
-            document.querySelector('#text_box_out').style.width = '450px';
-            var child_text = document.querySelectorAll('.child_text');
-            child_text[0].style.width = '408px';
-            child_text[1].style.width = '408px';
-            child_text[2].style.width = '408px';
-        }else{
-            document.querySelector('#img_box').innerHTML = "<img src='" + image + "'>";
-        }
-        */
-
     document.querySelector('#og_title').innerText = title;
     document.querySelector('#og_url').innerText = og_url;
     document.querySelector('#og_description').innerText = description;
@@ -232,10 +144,17 @@ function getURLDom(targetURL) {
 
 }
 
+function renderURL(url) {
+    document.getElementById("#in_url").value = "Johnny Bravo";
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     var naver = document.getElementById('naver');
     var facebook = document.getElementById('facebook');
+    var in_url = document.getElementById("in_url");
+    var search = document.getElementById('submit_url');
 
     show_btn = 'naver';
     naver.addEventListener('click', function () {
@@ -247,7 +166,29 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('f')
     })
 
+    search.addEventListener('click', function () {
+        url = in_url.value;
+
+        var expUrl = /^(https?):\/\/([a-z0-9-]+\.)+[a-z0-9]{2,4}.*$/
+        if (!expUrl.test(url)) {
+            url = 'https://' + url;
+        }
+        //url 재검색
+        document.querySelector('#rect_box').style.display = "none";
+        document.querySelector('#square_box').style.display = "none";
+        try {
+            var list = document.getElementById("rect_img");
+            list.removeChild(list.childNodes[0]);
+
+        } catch{
+            var list = document.getElementById("square_img");
+            list.removeChild(list.childNodes[0]);
+        }
+        getURLDom(url);
+    })
+
     getCurrentTabUrl(function (url) {
         getURLDom(url);
+        in_url.value = url;
     });
 });

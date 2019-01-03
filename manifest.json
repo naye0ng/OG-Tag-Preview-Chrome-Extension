@@ -1,7 +1,7 @@
 {
     "name": "OG Tag Preview",
     "description": "If you use this tool, you can preview the OG tag on your website",
-    "version": "1.1",
+    "version": "2.0",
     "manifest_version": 2,
     "browser_action": {
         "default_icon": "icon.png",

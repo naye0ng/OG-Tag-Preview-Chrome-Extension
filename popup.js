@@ -9,6 +9,10 @@
     (추가) http://d2campusfest.kr/6th/의 og:image에 파일경로가 들어가 있는 경우
 
     [version : 2.0]
+    Naver 서비스의 최적화된 미리보기 제공
+    익스텐션 자체에서 url 검색기능 추가
+
+    [version : 3.0]
     (선택) Facebook,Naver,Twitter 등 각 서비스별로 최적화된 미리보기 제공
 
 */
@@ -155,7 +159,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var facebook = document.getElementById('facebook');
     var in_url = document.getElementById("in_url");
     var search = document.getElementById('submit_url');
-
+    //이부분 추가해야 함
+    /*
     show_btn = 'naver';
     naver.addEventListener('click', function () {
         show_btn = 'naver';
@@ -165,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
         show_btn = 'facebook'
         alert('f')
     })
-
+*/
     search.addEventListener('click', function () {
         url = in_url.value;
 

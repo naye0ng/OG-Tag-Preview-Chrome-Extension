@@ -5,170 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="popup.css">
     <script src="popup.js"></script>
     <title>OG Popup</title>
-    <style>
-        body {
-            width: 500px
-        }
-
-        body>* {
-            padding: 0px;
-            overflow: hidden;
-        }
-
-        .in_bl {
-            display: inline-block;
-        }
-
-        .f_l {
-            float: left;
-        }
-
-        #btn_area,
-        #contents_area {
-            width: 100%;
-            margin: 10px 0 10px 0;
-        }
-
-        #preview_box {
-            width: 100%;
-            max-width: 450px;
-            height: 110px;
-        }
-
-        .custom_btn {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            border: solid 1px #dfdfdf;
-            border-radius: 15%;
-            text-align: center;
-        }
-
-        #img_box {
-            width: 110px;
-            height: 110px;
-            display: block;
-            position: relative;
-        }
-
-        #img_box>img {
-            width: 100%;
-        }
-
-        #text_box_out {
-            position: absolute;
-            width: 340px;
-            left: 110px;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            padding: 21px 26px 18px;
-            box-sizing: border-box;
-
-        }
-
-        #text_box_in {
-            display: inline-block;
-            width: 340px;
-            overflow: hidden;
-            vertical-align: middle;
-        }
-
-        #title_box,
-        #description_box,
-        #url_box {
-            width: 288px;
-            font-size: 1em;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            word-break: break-all;
-        }
-
-        #title_box {
-            display: block;
-            font-weight: 700;
-            font-size: 15px;
-            color: #333;
-        }
-
-        #description_box {
-            margin-top: 7px;
-            font-size: 13px;
-            color: #999;
-        }
-
-        #url_box {
-            margin-top: 9px;
-            font-size: 13px;
-            color: #00a832;
-            text-decoration: none;
-        }
-
-        .boundary {
-            display: block;
-            position: relative;
-            width: 100%;
-            background-color: #fff;
-            text-decoration: none;
-            -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
-            border: 1px solid rgba(0, 0, 0, .1);
-        }
-
-
-
-
-        table img {
-            max-width: 400px;
-        }
-
-        table,
-        tr,
-        th,
-        td {
-            width: 100%;
-            border-collapse: collapse;
-            border: solid 1px #dddddd;
-            text-align: left;
-            padding: 7px;
-        }
-
-        tbody tr:nth-child(2n+1) {
-            background-color: #f5f3f3;
-        }
-
-        th:nth-child(2n+1),
-        td:nth-child(2n+1) {
-            width: 20%;
-        }
-    </style>
 </head>
 
 <body>
     <!-- OG Tag 목록 보여주기-->
     <!--button id ='naver'><img src='/cc_facebook.png' alt='f' class='custom_btn'></button>
     <button id ='facebook'>F</button-->
+    
+    <!--div id='contents_area'>
+        <div id='preview_box' class='boundary'>
+            <div id='img_box'></div>
+            <div id='text_box_out'>
+                <div id='text_box_in' class='in_bl'>
+                    <div id='c_box' class='child_text'></div>
+                    <div id='description_box' class='child_text'></div>
+                    <div id='url_box' class='child_text'></div>
+                </div>
+            </div>
+        </div>
+    </div-->
+
     <p>OG Tag Preview</p>
     <div id='btn_area'>
         <div class='custom_btn in_bl' id='naver'>n</div>
         <div class='custom_btn in_bl' id='facebook'>f</div>
     </div>
-    <div id='contents_area'>
-        <div id='preview_box' class='boundary'>
-            <div id='img_box'></div>
-            <div id='text_box_out'>
-                <div id='text_box_in' class='in_bl'>
-                    <div id='title_box'></div>
-                    <div id='description_box'></div>
-                    <div id='url_box'></div>
+
+    <!--정사각형 카드-->
+    <div id='square_box'>
+
+        <div id='square_card' class='boundary'>
+            <!--card 이미지-->
+            <div id='square_img' class='in_bl f_l over_h'></div>
+            <!--여기부터 택스트-->
+            <div id='square_txt_outter' class='in_bl f_l'>
+                <div id='square_txt_inner'>
+                    <div class='n_title'></div>
+                    <div class='n_description'></div>
+                    <div class='n_url'tt></div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!--직사각형 카드-->
+    <div id='rect_box'>
+        <div id='rect_card' class='boundary'>
+            <!--card 이미지-->
+            <div id='rect_img' class='over_h'></div>
+            <!--여기부터 택스트-->
+            <div id='rect_txt_outter'>
+                <div id='rect_txt_inner'>
+                    <div class='n_title'></div>
+                    <div id='rect_description' class='n_description'></div>
+                    <div class='n_url'></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <p>OG Tag Preview list</p>
     <table>

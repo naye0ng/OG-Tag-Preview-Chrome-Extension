@@ -1,7 +1,7 @@
 {
   "name": "chrome-extension-with-vue",
   "description": "A Vue.js web extension",
-  "version": null,
+  "version": 2.0,
   "manifest_version": 2,
   "icons": {
     "48": "icons/icon_48.png",
@@ -19,5 +19,9 @@
   "options_ui": {
     "page": "options/options.html",
     "chrome_style": true
-  }
+  },
+  "permissions": [
+      "<all_urls>",
+      "tabs"
+  ]
 }

@@ -1,5 +1,8 @@
 <template>
+<div>
   <p>Hello world!</p>
+  <b-button>Button</b-button>
+</div>
 </template>
 
 <script>

@@ -1,8 +1,15 @@
 <template>
-<div>
-  <p>Hello world!</p>
-  <b-button>Button</b-button>
-</div>
+<b-container>
+  <!-- 검색 창 -->
+  <b-row>
+   <div>
+    <font-awesome-icon icon="user-secret" />
+  </div>
+  </b-row>
+  <!-- 캐러셀 -->
+  <b-row>
+  </b-row>
+</b-container>
 </template>
 
 <script>

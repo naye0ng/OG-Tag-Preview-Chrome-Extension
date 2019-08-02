@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-row>
+    <b-row id="search-section">
       <!-- 검색 창 -->
       <div id="search">
         <input type="text" class="search-string" placeholder="Enter URL" />
@@ -8,15 +8,20 @@
           <font-awesome-icon class="social-icon" icon="search" />
         </button>
       </div>
+    </b-row>
+    <b-row id="social-btns-section">
+      <div class="manual">
+        <div class="title">OG tag Preview</div>
+        <div class="description">This is a preview of how your website will look when it's shared on social media and messenger.</div>
+      </div>
       <!-- 페이스북, 트위터, 네이버, 카카오톡 -->
-      <div id="carousel-social-btn-wrap">
+      <div id="social-btns">
         <button
           class="social-btn"
           :class="{'selected-btn' : isFacebook()}"
           v-on:click="pushSocialBtn(0)"
         >
           <font-awesome-icon class="social-icon" :icon="['fab', 'facebook-f']" />
-          <p class="social-name">facebook</p>
         </button>
         <button
           class="social-btn"
@@ -24,7 +29,6 @@
           v-on:click="pushSocialBtn(1)"
         >
           <font-awesome-icon class="social-icon" :icon="['fab', 'twitter']" />
-          <p class="social-name">twitter</p>
         </button>
         <button
           class="social-btn"
@@ -32,7 +36,6 @@
           v-on:click="pushSocialBtn(2)"
         >
           <font-awesome-icon class="social-icon" :icon="['fab', 'slack']" />
-          <p class="social-name">slack</p>
         </button>
         <button
           class="social-btn"
@@ -40,9 +43,10 @@
           v-on:click="pushSocialBtn(3)"
         >
           <font-awesome-icon class="social-icon" :icon="['fab', 'line']" />
-          <p class="social-name">line</p>
         </button>
       </div>
+    </b-row>
+    <b-row id="carousel-section">
       <div id="carousel">
         <b-carousel
           id="carousel-1"
@@ -76,24 +80,43 @@
         </b-carousel>
       </div>
       <!-- table -->
-      <div id="og-container">
-        <div class="og-row">
-          <div class="og-header">OG:TITLE</div>
-          <div class="og-content">개발새발유후후후후</div>
+      </b-row>
+      <b-row>
+        <div class="manual" style="padding-left: 10%;padding-right: 10%;">
+          <div class="title">
+            OG tag Debugger
+            <b-form-checkbox v-model="checked" name="check-button" switch></b-form-checkbox>
+            </div>
+          <div class="description">
+            You can use this to easily create and debug your OG tags.
+            <br/>
+            Let's move the switch to edit mode. 
+            You can then create and copy your own Open Graph tags in edit mode.
+            </div>
         </div>
-        <div class="og-row">
-          <div class="og-header">OG:URL</div>
-          <div class="og-content">개발새발유후후후후</div>
+        <div id="og-container">
+          <div class="og-row">
+            <div class="og-header">title</div>
+            <div class="og-content">개발새발유후후후후</div>
+          </div>
+          <div class="og-row">
+            <div class="og-header">og:title</div>
+            <div class="og-content">개발새발유후후후후</div>
+          </div>
+          <div class="og-row">
+            <div class="og-header">og:url</div>
+            <div class="og-content">https://fonts.google.com/</div>
+          </div>
+          <div class="og-row">
+            <div class="og-header">og:description</div>
+            <div class="og-content">우우우우우우우ㅏ아어ㅏ어ㅏdndkjkjk우개발새발유후후후후개발새발유후후후후개발새발유후후후후개발새발유후후후후개발새발유후후후후ㅜㅇ</div>
+          </div>
+          <div class="og-row">
+            <div class="og-header">og:image</div>
+            <div class="og-content">https://fonts.google.com/</div>
+            <div class="og-image">dldmd</div>
+          </div>
         </div>
-        <div class="og-row">
-          <div class="og-header">OG:DESCRIPTION</div>
-          <div class="og-content">개발새발유후후후후</div>
-        </div>
-        <div class="og-row">
-          <div class="og-header">OG:IMAGE</div>
-          <div class="og-image">개발새발유후후후후</div>
-        </div>
-      </div>
     </b-row>
   </b-container>
 </template>
@@ -103,7 +126,8 @@ export default {
   data() {
     return {
       slide: 0,
-      sliding: false
+      sliding: false,
+      checked: false,
     };
   },
   methods: {
@@ -134,20 +158,52 @@ export default {
 
 <style>
 body {
-  min-width: 500px;
-  min-height: 800px;
+  min-width: 450px;
 }
 body > * {
   box-sizing: border-box !important;
 }
+.manual{
+  margin: 5px 0 15px;
+}
+.manual .title{
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 550;
+  color: #181818;
+}
+.manual .description{
+  font-size: 12px;
+  /* font-weight: 550; */
+  color: rgba(0, 0, 0, 0.6);
+}
+.manual .custom-control.custom-switch{
+  display: inline-block;
+  margin-left: 10px;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #ff5252!important;
+    background-color: #ff5252!important;
+}
+.custom-control-input:focus ~ .custom-control-label::before{
+  box-shadow: none!important;
+}
+/* .app-title{
+  margin: 10px 0;
+  font-size: 15px;
+  font-weight: 550;
+  color: #181818;
+} */
+#search-section,
+#social-btns-section {
+  padding-left: 10%;
+  padding-right: 10%;
+}
 #search {
   width: 100%;
-  padding: 20px;
-  height: 130px;
+  margin: 20px 0;
   position: relative;
   overflow: hidden;
-  background-color: #425c59;
-  border-bottom-right-radius: 50%;
 }
 #search input.search-string {
   width: calc(100% - 45px);
@@ -156,63 +212,64 @@ body > * {
   padding-left: 15px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border: none;
-  color: #343d46;
+  border-left: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-top: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-right: none;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 13px;
 }
 #search .search-btn {
   position: absolute;
   width: 45px;
   height: 45px;
-  right: 20px;
+  right: 0;
   margin: 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  border: none;
-  color: #425c59;
+  border-right: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-top: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-left: none;
+  border: 1.5px solid rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6);
 }
-#search .search-btn:before {
-  content: "";
-  position: absolute;
-  height: 80%;
-  top: 10%;
-  left: 0;
-  border-left: 2px solid #425c59;
-  border-radius: 2px;
+#search input.search-string:focus {
+  border-color: #ff5252;
+  color: #181818;
 }
-#carousel-social-btn-wrap {
-  position: absolute;
-  top: 70px;
-  padding: 20px;
+#search input.search-string:focus + .search-btn {
+  border-color: #ff5252;
+  background-color: #ff5252;
+  color: #ffffff;
 }
-#carousel-social-btn-wrap .social-btn {
-  width: 65px;
-  height: 65px;
+/* Carousel Buttons */
+#social-btns {
+  width: 100%;
+  /* margin-top: 10px; */
+}
+#social-btns .social-btn {
+  width: 45px;
+  height: 45px;
   padding: 0;
-  padding-top: 12px;
+  padding-top: 3px;
   margin-right: 10px;
   border-radius: 7%;
   border: none;
-  background-color: #fff;
+  background-color: #f6f6f6;
   text-align: center;
-  color: #425c59;
-  box-shadow: rgba(66, 92, 89, 0.3) 0px 0px 8px;
+  color: rgba(0, 0, 0, 0.6);
+  /* box-shadow: rgba(66, 92, 89, 0.3) 0px 0px 8px; */
 }
-#carousel-social-btn-wrap .social-btn .social-icon {
+#social-btns .social-btn .social-icon {
   font-size: 23px;
 }
-#carousel-social-btn-wrap .social-btn .social-name {
-  margin-top: 2px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.03rem;
+#social-btns .social-btn:hover {
+  /* background-color: #f4f6f5; */
+  color: #181818; /*#3E4242;*/
 }
-#carousel-social-btn-wrap .social-btn:hover {
-  background-color: #f4f6f5;
-  color: #343d46; /*#3E4242;*/
-}
-#carousel-social-btn-wrap .social-btn.selected-btn {
-  background-color: #cc5a15; /*#425C59;*/
+#social-btns .social-btn.selected-btn {
+  background-color: #ff5252; /*#425C59;*/
   color: #fff;
 }
 #carousel {
@@ -220,7 +277,30 @@ body > * {
 }
 
 /* OG TAG LIST */
-#og-container{
+#og-container {
+  width: 100%;
+}
+#og-container .og-row {
+  padding: 15px 10%;
+  font-size: 12px;
+}
+#og-container .og-row:nth-child(2n-1) {
+  /* padding: 15px 10%; */
+  background-color: #f6f6f6;
+}
+#og-container .og-header {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+  color: rgba(0,0,0,.6);
+}
+#og-container .og-content {
+  font-size: 14px;
+  font-weight: 500;
+
+}
+/* #og-container{
   width:100%;
   margin-top: 130px;
   padding: 20px;
@@ -243,5 +323,5 @@ body > * {
 #og-container .og-header{
   font-weight: 600;
   letter-spacing: 0.08rem;
-}
+} */
 </style>

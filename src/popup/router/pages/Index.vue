@@ -3,12 +3,13 @@
     <b-row id="search-section">
       <!-- 검색 창 -->
       <div id="search">
-        <input type="text" class="search-string" placeholder="Enter URL" />
+        <input type="text" class="search-string" placeholder="Enter URL" v-model="url"/>
         <button type="submit" class="search-btn">
           <font-awesome-icon class="social-icon" icon="search" />
         </button>
       </div>
     </b-row>
+    {{ url }}
     <b-row id="social-btns-section">
       <div class="manual">
         <div class="title">OG tag Preview</div>
@@ -127,7 +128,9 @@ export default {
     return {
       slide: 0,
       sliding: false,
+      url : '',
       checked: false,
+
     };
   },
   methods: {
@@ -136,6 +139,15 @@ export default {
     },
     onSlideEnd(slide) {
       this.sliding = false;
+    },
+    geCurrenttUrl() {
+      var queryInfo = {
+        active: true,
+        currentWindow: true,
+      }
+      chrome.tabs.query(queryInfo, function (tabs) {
+        this.url = tabs[0].url
+      })
     },
     pushSocialBtn(target) {
       this.slide = target;
@@ -151,8 +163,43 @@ export default {
     },
     isLine() {
       return this.slide == 3 ? true : false;
-    }
+    },
+  },
+  created(){
+
+    setTimeout(() => {
+    	if(this.url != ''){
+        
+      }
+    }, 1000)
+    // var fourmTabs = new Array();
+    // var queryInfo = {
+    //     active: true,
+    //     currentWindow: true,
+    //   }
+    // chrome.tabs.query(queryInfo, function (tabs) {
+    //     for (var i = 0; i < tabs.length; i++) {
+    //         fourmTabs[i] = tabs[i];
+    //     }
+    //     // Moved code inside the callback handler
+    //     for (var i = 0; i < fourmTabs.length; i++) {
+    //         if (fourmTabs[i] != null){
+    //           this.url = fourmTabs[i].url
+    //           console.log(fourmTabs[i].url);
+    //         }
+    //         else {
+    //           console.log("??" + i);
+    //         }
+    //     }
+    // });
+    // console.log('d')
+    // chrome.tabs.getSelected(null,function(tab){
+    //     console.log('ㅇㅇㅇㅇ',tab);
+    // } );
+    // console.log('d2')
+
   }
+
 };
 </script>
 

@@ -3,13 +3,12 @@
     <b-row id="search-section">
       <!-- 검색 창 -->
       <div id="search">
-        <input type="text" class="search-string" placeholder="Enter URL" v-model="url"/>
+        <input type="text" class="search-string" placeholder="Enter URL" v-model="chrome_data.url"/>
         <button type="submit" class="search-btn">
           <font-awesome-icon class="social-icon" icon="search" />
         </button>
       </div>
     </b-row>
-    {{ url }}
     <b-row id="social-btns-section">
       <div class="manual">
         <div class="title">OG tag Preview</div>
@@ -123,12 +122,19 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+import cheerio from 'cheerio'
+
 export default {
   data() {
     return {
+      // carousel
       slide: 0,
       sliding: false,
-      url : '',
+      // app data
+      chrome_data : {},
+      //radio
       checked: false,
 
     };
@@ -140,15 +146,53 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     },
-    geCurrenttUrl() {
+    // using chrome api
+    geCurrenttUrl(chrome_data, getHTML) {
       var queryInfo = {
         active: true,
         currentWindow: true,
       }
-      chrome.tabs.query(queryInfo, function (tabs) {
-        this.url = tabs[0].url
+      chrome.tabs.query((queryInfo), function (tabs) {
+        Vue.set(chrome_data,'url',tabs[0].url)
+        getMetaTags()
       })
     },
+    // web crawling
+    getMetaTags(){
+      // console.log(this.chrome_data)
+      axios.get(this.chrome_data.url)
+        .then(function (response) {
+          const $ = cheerio.load(response.data)
+          // https://github.com/joshbuchea/HEAD
+          // https://css-tricks.com/essential-meta-tags-social-media/
+
+          // Essential META Tags
+          $("meta[property='og:url']").attr("content")
+          $("meta[property='og:title']").attr("content")
+          $("meta[property='og:description']").attr("content")
+          $("meta[property='og:image']").attr("content")
+          $("meta[property='twitter:card']").attr("content")
+
+          // Non-Essential, But Recommended
+          $("meta[property='og:site_name']").attr("content")
+          $("meta[property='og:image:alt']").attr("content")
+          $("meta[property='twitter:image:alt']").attr("content")
+
+          // Non-Essential, But Required for Analytics
+          $("meta[property='fb:app_id']").attr("content")
+          $("meta[property='twitter:site']").attr("content")
+          $("meta[property='twitter:creator']").attr("content")
+          $("meta[property='twitter:title']").attr("content")
+          $("meta[property='twitter:description']").attr("content")
+          $("meta[property='twitter:image']").attr("content")
+          $("meta[property='twitter:creator']").attr("content")
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    },
+    // social button
     pushSocialBtn(target) {
       this.slide = target;
     },
@@ -165,40 +209,11 @@ export default {
       return this.slide == 3 ? true : false;
     },
   },
-  created(){
-
-    setTimeout(() => {
-    	if(this.url != ''){
-        
-      }
-    }, 1000)
-    // var fourmTabs = new Array();
-    // var queryInfo = {
-    //     active: true,
-    //     currentWindow: true,
-    //   }
-    // chrome.tabs.query(queryInfo, function (tabs) {
-    //     for (var i = 0; i < tabs.length; i++) {
-    //         fourmTabs[i] = tabs[i];
-    //     }
-    //     // Moved code inside the callback handler
-    //     for (var i = 0; i < fourmTabs.length; i++) {
-    //         if (fourmTabs[i] != null){
-    //           this.url = fourmTabs[i].url
-    //           console.log(fourmTabs[i].url);
-    //         }
-    //         else {
-    //           console.log("??" + i);
-    //         }
-    //     }
-    // });
-    // console.log('d')
-    // chrome.tabs.getSelected(null,function(tab){
-    //     console.log('ㅇㅇㅇㅇ',tab);
-    // } );
-    // console.log('d2')
-
+  mounted(){
+    this.geCurrenttUrl(this.chrome_data, this.getHTML)
+    // console.log(axios)
   }
+
 
 };
 </script>

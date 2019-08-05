@@ -60,20 +60,24 @@
           @sliding-start="onSlideStart"
           @sliding-end="onSlideEnd"
         >
+          <!-- facebook slide -->
           <b-carousel-slide img-blank>
             <div class="facebook-card">
               <p>hi i'm facebook!</p>
             </div>
           </b-carousel-slide>
+          <!-- twitter slide -->
           <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
             <p>
               1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
               a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
             </p>
           </b-carousel-slide>
-          <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-            <p>2</p>
+          <!-- slack slide -->
+          <b-carousel-slide img-blank>
+            <!-- <slack/> -->
           </b-carousel-slide>
+          <!-- line slide -->
           <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
             <p>3</p>
           </b-carousel-slide>
@@ -97,24 +101,25 @@
         <div id="og-container">
           <div class="og-row">
             <div class="og-header">title</div>
-            <div class="og-content">개발새발유후후후후</div>
+            <div class="og-content">{{ chrome_data.title }}</div>
           </div>
           <div class="og-row">
             <div class="og-header">og:title</div>
-            <div class="og-content">개발새발유후후후후</div>
+            <div class="og-content">{{ chrome_data.og_title }}</div>
           </div>
           <div class="og-row">
             <div class="og-header">og:url</div>
-            <div class="og-content">https://fonts.google.com/</div>
+            <div class="og-content">{{ chrome_data.og_url }}</div>
           </div>
           <div class="og-row">
             <div class="og-header">og:description</div>
-            <div class="og-content">우우우우우우우ㅏ아어ㅏ어ㅏdndkjkjk우개발새발유후후후후개발새발유후후후후개발새발유후후후후개발새발유후후후후개발새발유후후후후ㅜㅇ</div>
+            <div class="og-content">{{ chrome_data.og_description }}</div>
           </div>
           <div class="og-row">
             <div class="og-header">og:image</div>
-            <div class="og-content">https://fonts.google.com/</div>
-            <div class="og-image">dldmd</div>
+            <div class="og-image">
+              <img :src="chrome_data.og_image">
+            </div>
           </div>
         </div>
     </b-row>
@@ -125,6 +130,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 import cheerio from 'cheerio'
+import slack from '../components/slack'
+import { constants } from 'crypto';
 
 export default {
   data() {
@@ -139,6 +146,9 @@ export default {
 
     };
   },
+  components : {
+    slack
+  },
   methods: {
     onSlideStart(slide) {
       this.sliding = true;
@@ -147,46 +157,45 @@ export default {
       this.sliding = false;
     },
     // using chrome api
-    geCurrenttUrl(chrome_data, getHTML) {
+    geCurrenttUrl(chrome_data, getMetaTags) {
       var queryInfo = {
         active: true,
         currentWindow: true,
       }
       chrome.tabs.query((queryInfo), function (tabs) {
         Vue.set(chrome_data,'url',tabs[0].url)
-        getMetaTags()
+        Vue.set(chrome_data,'title',tabs[0].title)
+        getMetaTags(chrome_data)
       })
     },
     // web crawling
-    getMetaTags(){
-      // console.log(this.chrome_data)
-      axios.get(this.chrome_data.url)
+    getMetaTags(chrome_data){
+      axios.get(chrome_data.url)
         .then(function (response) {
           const $ = cheerio.load(response.data)
           // https://github.com/joshbuchea/HEAD
           // https://css-tricks.com/essential-meta-tags-social-media/
-
           // Essential META Tags
-          $("meta[property='og:url']").attr("content")
-          $("meta[property='og:title']").attr("content")
-          $("meta[property='og:description']").attr("content")
-          $("meta[property='og:image']").attr("content")
-          $("meta[property='twitter:card']").attr("content")
+          chrome_data.og_url = $("meta[property='og:url']").attr("content") || ''
+          chrome_data.og_title = $("meta[property='og:title']").attr("content") || ''
+          chrome_data.og_description = $("meta[property='og:description']").attr("content") || ''
+          chrome_data.og_image = $("meta[property='og:image']").attr("content") || ''
+          chrome_data.twitter_card = $("meta[name='twitter:card']").attr("content") || ''
 
           // Non-Essential, But Recommended
-          $("meta[property='og:site_name']").attr("content")
-          $("meta[property='og:image:alt']").attr("content")
-          $("meta[property='twitter:image:alt']").attr("content")
+          chrome_data.og_site_name = $("meta[property='og:site_name']").attr("content")
+          chrome_data.og_image_alt = $("meta[property='og:image:alt']").attr("content")
+          chrome_data.twitter_image_alt = $("meta[name='twitter:image:alt']").attr("content")
 
           // Non-Essential, But Required for Analytics
-          $("meta[property='fb:app_id']").attr("content")
-          $("meta[property='twitter:site']").attr("content")
-          $("meta[property='twitter:creator']").attr("content")
-          $("meta[property='twitter:title']").attr("content")
-          $("meta[property='twitter:description']").attr("content")
-          $("meta[property='twitter:image']").attr("content")
-          $("meta[property='twitter:creator']").attr("content")
-
+          chrome_data.fb_app_id= $("meta[property='fb:app_id']").attr("content")
+          chrome_data.twitter_site= $("meta[name='twitter:site']").attr("content")
+          chrome_data.twitter_creator = $("meta[name='twitter:creator']").attr("content")
+          chrome_data.twitter_title = $("meta[name='twitter:title']").attr("content")
+          chrome_data.twitter_description = $("meta[name='twitter:description']").attr("content")
+          chrome_data.twitter_image = $("meta[name='twitter:image']").attr("content")
+          chrome_data.twitter_creator = $("meta[name='twitter:creator']").attr("content")
+          console.log(chrome_data)
         })
         .catch(function (error) {
           console.log(error);
@@ -210,17 +219,14 @@ export default {
     },
   },
   mounted(){
-    this.geCurrenttUrl(this.chrome_data, this.getHTML)
-    // console.log(axios)
+    this.geCurrenttUrl(this.chrome_data, this.getMetaTags)
   }
-
-
 };
 </script>
 
 <style>
 body {
-  min-width: 450px;
+  width: 500px;
 }
 body > * {
   box-sizing: border-box !important;
@@ -250,12 +256,6 @@ body > * {
 .custom-control-input:focus ~ .custom-control-label::before{
   box-shadow: none!important;
 }
-/* .app-title{
-  margin: 10px 0;
-  font-size: 15px;
-  font-weight: 550;
-  color: #181818;
-} */
 #search-section,
 #social-btns-section {
   padding-left: 10%;
@@ -337,7 +337,6 @@ body > * {
 #carousel {
   margin-top: 50px;
 }
-
 /* OG TAG LIST */
 #og-container {
   width: 100%;
@@ -351,16 +350,18 @@ body > * {
   background-color: #f6f6f6;
 }
 #og-container .og-header {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.03rem;
-  color: rgba(0,0,0,.6);
+  color: #ff5252;/*rgba(0,0,0,.6);*/
 }
 #og-container .og-content {
   font-size: 14px;
   font-weight: 500;
-
+}
+#og-container  .og-image img{
+  width:100%;
 }
 /* #og-container{
   width:100%;

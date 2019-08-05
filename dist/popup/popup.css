@@ -1,6 +1,6 @@
 
 body {
-  min-width: 450px;
+  width: 500px;
 }
 body > * {
   box-sizing: border-box !important;
@@ -30,12 +30,6 @@ body > * {
 .custom-control-input:focus ~ .custom-control-label::before{
   box-shadow: none!important;
 }
-/* .app-title{
-  margin: 10px 0;
-  font-size: 15px;
-  font-weight: 550;
-  color: #181818;
-} */
 #search-section,
 #social-btns-section {
   padding-left: 10%;
@@ -117,7 +111,6 @@ body > * {
 #carousel {
   margin-top: 50px;
 }
-
 /* OG TAG LIST */
 #og-container {
   width: 100%;
@@ -131,15 +124,18 @@ body > * {
   background-color: #f6f6f6;
 }
 #og-container .og-header {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.03rem;
-  color: rgba(0,0,0,.6);
+  color: #ff5252;/*rgba(0,0,0,.6);*/
 }
 #og-container .og-content {
   font-size: 14px;
   font-weight: 500;
+}
+#og-container  .og-image img{
+  width:100%;
 }
 /* #og-container{
   width:100%;

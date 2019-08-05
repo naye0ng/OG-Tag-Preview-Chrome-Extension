@@ -1480,7 +1480,7 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPAC
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ \"./store/index.js\");\n\nwindow.browser = __webpack_require__(/*! webextension-polyfill */ \"../node_modules/webextension-polyfill/dist/browser-polyfill.js\");\nalert(`Hello ${_store__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getters.foo}!`);\n\n//# sourceURL=webpack:///./background.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ \"./store/index.js\");\n\nwindow.browser = __webpack_require__(/*! webextension-polyfill */ \"../node_modules/webextension-polyfill/dist/browser-polyfill.js\"); // alert(`Hello ${store.getters.foo}!`);\n\n//# sourceURL=webpack:///./background.js?");
 
 /***/ }),
 
@@ -1488,11 +1488,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sto
 /*!**************************!*\
   !*** ./store/actions.js ***!
   \**************************/
-/*! exports provided: setFoo */
+/*! exports provided: setFoo, setMetaData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setFoo\", function() { return setFoo; });\n/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation-types */ \"./store/mutation-types.js\");\n\nconst setFoo = ({\n  commit\n}, payload) => {\n  commit(_mutation_types__WEBPACK_IMPORTED_MODULE_0__[\"UPDATE_FOO\"], payload);\n};\n\n//# sourceURL=webpack:///./store/actions.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setFoo\", function() { return setFoo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setMetaData\", function() { return setMetaData; });\n/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation-types */ \"./store/mutation-types.js\");\n\nconst setFoo = ({\n  commit\n}, payload) => {\n  commit(_mutation_types__WEBPACK_IMPORTED_MODULE_0__[\"UPDATE_FOO\"], payload);\n};\nconst setMetaData = ({\n  commit\n}, payload) => {\n  commit(_mutation_types__WEBPACK_IMPORTED_MODULE_0__[\"UPDATE_META_DATA\"], payload);\n};\n\n//# sourceURL=webpack:///./store/actions.js?");
 
 /***/ }),
 
@@ -1500,11 +1500,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!**************************!*\
   !*** ./store/getters.js ***!
   \**************************/
-/*! exports provided: foo */
+/*! exports provided: foo, metaData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"foo\", function() { return foo; });\nconst foo = state => state.foo;\n\n//# sourceURL=webpack:///./store/getters.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"foo\", function() { return foo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"metaData\", function() { return metaData; });\nconst foo = state => state.foo;\nconst metaData = state => state.metaData;\n\n//# sourceURL=webpack:///./store/getters.js?");
 
 /***/ }),
 
@@ -1516,7 +1516,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"../node_modules/vue/dist/vue.runtime.esm.js\");\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ \"../node_modules/vuex/dist/vuex.esm.js\");\n/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters */ \"./store/getters.js\");\n/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ \"./store/mutations.js\");\n/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions */ \"./store/actions.js\");\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"].Store({\n  state: {\n    foo: 'bar'\n  },\n  getters: _getters__WEBPACK_IMPORTED_MODULE_2__,\n  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n  actions: _actions__WEBPACK_IMPORTED_MODULE_4__\n}));\n\n//# sourceURL=webpack:///./store/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"../node_modules/vue/dist/vue.runtime.esm.js\");\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ \"../node_modules/vuex/dist/vuex.esm.js\");\n/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters */ \"./store/getters.js\");\n/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ \"./store/mutations.js\");\n/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions */ \"./store/actions.js\");\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"].Store({\n  state: {\n    metaData: {},\n    foo: 'bar'\n  },\n  getters: _getters__WEBPACK_IMPORTED_MODULE_2__,\n  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n  actions: _actions__WEBPACK_IMPORTED_MODULE_4__\n}));\n\n//# sourceURL=webpack:///./store/index.js?");
 
 /***/ }),
 
@@ -1524,11 +1524,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_
 /*!*********************************!*\
   !*** ./store/mutation-types.js ***!
   \*********************************/
-/*! exports provided: UPDATE_FOO */
+/*! exports provided: UPDATE_FOO, UPDATE_META_DATA */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"UPDATE_FOO\", function() { return UPDATE_FOO; });\nconst UPDATE_FOO = 'UPDATE_FOO';\n\n//# sourceURL=webpack:///./store/mutation-types.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"UPDATE_FOO\", function() { return UPDATE_FOO; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"UPDATE_META_DATA\", function() { return UPDATE_META_DATA; });\nconst UPDATE_FOO = 'UPDATE_FOO';\nconst UPDATE_META_DATA = 'UPDATE_META_DATA';\n\n//# sourceURL=webpack:///./store/mutation-types.js?");
 
 /***/ }),
 
@@ -1540,7 +1540,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation-types */ \"./store/mutation-types.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  [_mutation_types__WEBPACK_IMPORTED_MODULE_0__[\"UPDATE_FOO\"]](state, payload) {\n    state.foo = payload;\n  }\n\n});\n\n//# sourceURL=webpack:///./store/mutations.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation-types */ \"./store/mutation-types.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  [_mutation_types__WEBPACK_IMPORTED_MODULE_0__[\"UPDATE_FOO\"]](state, payload) {\n    state.foo = payload;\n  },\n\n  [_mutation_types__WEBPACK_IMPORTED_MODULE_0__[\"PDATE_META_DATA\"]](state, payload) {\n    state.metaData = payload;\n  }\n\n});\n\n//# sourceURL=webpack:///./store/mutations.js?");
 
 /***/ })
 

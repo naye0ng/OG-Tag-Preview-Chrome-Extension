@@ -4,7 +4,7 @@ export default {
   [types.UPDATE_FOO](state, payload) {
     state.foo = payload;
   },
-  [types.PDATE_META_DATA](state, payload) {
+  [types.UPDATE_META_DATA](state, payload){
     state.metaData = payload;
-  },
+  }
 };

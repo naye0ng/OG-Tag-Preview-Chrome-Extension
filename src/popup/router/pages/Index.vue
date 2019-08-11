@@ -51,7 +51,7 @@
         <b-carousel
           id="carousel-1"
           v-model="slide"
-          :interval="4000"
+          :interval="400000"
           controls
           indicators
           img-width="1024"
@@ -75,7 +75,7 @@
           </b-carousel-slide>
           <!-- slack slide -->
           <b-carousel-slide img-blank>
-            <!-- <slack/> -->
+            <slack/>
           </b-carousel-slide>
           <!-- line slide -->
           <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
@@ -128,6 +128,7 @@
 
 <script>
 import Vue from 'vue'
+import store from '../../../store'
 import axios from 'axios'
 import cheerio from 'cheerio'
 import slack from '../components/slack'
@@ -195,7 +196,7 @@ export default {
           chrome_data.twitter_description = $("meta[name='twitter:description']").attr("content")
           chrome_data.twitter_image = $("meta[name='twitter:image']").attr("content")
           chrome_data.twitter_creator = $("meta[name='twitter:creator']").attr("content")
-          console.log(chrome_data)
+          store.dispatch('setMetaData',chrome_data)
         })
         .catch(function (error) {
           console.log(error);
@@ -218,7 +219,7 @@ export default {
       return this.slide == 3 ? true : false;
     },
   },
-  mounted(){
+  created(){
     this.geCurrenttUrl(this.chrome_data, this.getMetaTags)
   }
 };
@@ -363,28 +364,14 @@ body > * {
 #og-container  .og-image img{
   width:100%;
 }
-/* #og-container{
-  width:100%;
-  margin-top: 130px;
-  padding: 20px;
-  position:relative;
-  background-color: #425c59;
-  color: #fff;
-  font-size: 12px;
+/*  Carousel Style */
+#carousel-section .carousel-caption {
+    right: 5%;
+    top: 0;
+    left: 5%;
+    z-index: 10;
 }
-#og-container::before{
-  content:'';
-  z-index: -1;
-  position: absolute;
-  width: 100%;
-  height:130px;
-  top:-65px;
-  left:0;
-  background-color: #425c59;
-  border-top-left-radius: 50%;
+#carousel {
+  margin-top:0;
 }
-#og-container .og-header{
-  font-weight: 600;
-  letter-spacing: 0.08rem;
-} */
 </style>

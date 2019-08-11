@@ -5,6 +5,6 @@ export default {
     state.foo = payload;
   },
   [types.UPDATE_META_DATA](state, payload){
-    state.metaData = payload;
+    state.metaData = Object.assign({},payload);
   }
 };

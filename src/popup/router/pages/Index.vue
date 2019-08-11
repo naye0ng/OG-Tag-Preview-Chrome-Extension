@@ -3,9 +3,9 @@
     <b-row id="search-section">
       <!-- 검색 창 -->
       <div id="search">
-        <input type="text" class="search-string" placeholder="Enter URL" v-model="chrome_data.url"/>
-        <button type="submit" class="search-btn">
-          <font-awesome-icon class="social-icon" icon="search" />
+        <input type="text" class="search-string" placeholder="Enter URL" v-model="chrome_data.url" @keyup.enter="getThisURLMetaTags()"/>
+        <button type="submit" class="search-btn" @click="getThisURLMetaTags()">
+          <font-awesome-icon class="social-icon" icon="search"/>
         </button>
       </div>
     </b-row>
@@ -55,7 +55,7 @@
           controls
           indicators
           img-width="1024"
-          img-height="480"
+          img-height="400"
           style="text-shadow: 1px 1px 2px #333;"
           @sliding-start="onSlideStart"
           @sliding-end="onSlideEnd"
@@ -138,7 +138,7 @@ export default {
   data() {
     return {
       // carousel
-      slide: 0,
+      slide: 2,
       sliding: false,
       // app data
       chrome_data : {},
@@ -157,6 +157,9 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     },
+    getThisURLMetaTags(){
+      this.getMetaTags(this.chrome_data)
+    },
     // using chrome api
     geCurrenttUrl(chrome_data, getMetaTags) {
       var queryInfo = {
@@ -165,7 +168,6 @@ export default {
       }
       chrome.tabs.query((queryInfo), function (tabs) {
         Vue.set(chrome_data,'url',tabs[0].url)
-        Vue.set(chrome_data,'title',tabs[0].title)
         getMetaTags(chrome_data)
       })
     },
@@ -173,29 +175,37 @@ export default {
     getMetaTags(chrome_data){
       axios.get(chrome_data.url)
         .then(function (response) {
+          var expTestUrl = /^(https?:\/\/)/
+          var expExecUrl = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/gi
+
+
           const $ = cheerio.load(response.data)
           // https://github.com/joshbuchea/HEAD
           // https://css-tricks.com/essential-meta-tags-social-media/
           // Essential META Tags
-          chrome_data.og_url = $("meta[property='og:url']").attr("content") || ''
-          chrome_data.og_title = $("meta[property='og:title']").attr("content") || ''
-          chrome_data.og_description = $("meta[property='og:description']").attr("content") || ''
-          chrome_data.og_image = $("meta[property='og:image']").attr("content") || ''
-          chrome_data.twitter_card = $("meta[name='twitter:card']").attr("content") || ''
+          Vue.set(chrome_data,'title',$("title").text() || '')
+          Vue.set(chrome_data, 'og_url', $("meta[property='og:url']").attr("content") || '')
+          Vue.set(chrome_data, 'og_title', $("meta[property='og:title']").attr("content") || '')
+          Vue.set(chrome_data, 'og_description', $("meta[property='og:description']").attr("content") || '')
+          var og_image = $("meta[property='og:image']").attr("content") || ''
+          Vue.set(chrome_data, 'og_image' , expTestUrl.test(og_image) || og_image == '' ? og_image : expExecUrl.exec(chrome_data.url)[0] + og_image)
+          Vue.set(chrome_data, 'twitter_card', $("meta[name='twitter:card']").attr("content") || '')
 
           // Non-Essential, But Recommended
-          chrome_data.og_site_name = $("meta[property='og:site_name']").attr("content")
-          chrome_data.og_image_alt = $("meta[property='og:image:alt']").attr("content")
-          chrome_data.twitter_image_alt = $("meta[name='twitter:image:alt']").attr("content")
+          Vue.set(chrome_data, 'og_site_name', $("meta[property='og:site_name']").attr("content") || '')
+          Vue.set(chrome_data, 'og_image_alt', $("meta[property='og:image:alt']").attr("content") || '')
+          Vue.set(chrome_data, 'twitter_image_alt', $("meta[name='twitter:image:alt']").attr("content") || '')
 
           // Non-Essential, But Required for Analytics
-          chrome_data.fb_app_id= $("meta[property='fb:app_id']").attr("content")
-          chrome_data.twitter_site= $("meta[name='twitter:site']").attr("content")
-          chrome_data.twitter_creator = $("meta[name='twitter:creator']").attr("content")
-          chrome_data.twitter_title = $("meta[name='twitter:title']").attr("content")
-          chrome_data.twitter_description = $("meta[name='twitter:description']").attr("content")
-          chrome_data.twitter_image = $("meta[name='twitter:image']").attr("content")
-          chrome_data.twitter_creator = $("meta[name='twitter:creator']").attr("content")
+          Vue.set(chrome_data, 'fb_app_id', $("meta[property='fb:app_id']").attr("content") || '')
+          Vue.set(chrome_data, 'twitter_site', $("meta[name='twitter:site']").attr("content") || '')
+          Vue.set(chrome_data, 'twitter_creator', $("meta[name='twitter:creator']").attr("content") || '')
+          Vue.set(chrome_data, 'twitter_title', $("meta[name='twitter:title']").attr("content") || '')
+          Vue.set(chrome_data, 'twitter_description', $("meta[name='twitter:description']").attr("content") || '')
+          Vue.set(chrome_data, 'twitter_image', $("meta[name='twitter:image']").attr("content") || '')
+          Vue.set(chrome_data, 'twitter_creator', $("meta[name='twitter:creator']").attr("content") || '')
+          var favicon = $("link[rel='icon']").attr("href") || $("link[rel='shortcut icon']").attr("href") || ''
+          Vue.set(chrome_data, 'favicon', expTestUrl.test(favicon) || favicon == '' ? favicon : expExecUrl.exec(chrome_data.url)[0] + favicon)
           store.dispatch('setMetaData',chrome_data)
         })
         .catch(function (error) {
@@ -220,7 +230,7 @@ export default {
     },
   },
   created(){
-    this.geCurrenttUrl(this.chrome_data, this.getMetaTags)
+    this.geCurrenttUrl(this.chrome_data, this.getMetaTags, this.checkImgUrl)
   }
 };
 </script>
@@ -366,12 +376,19 @@ body > * {
 }
 /*  Carousel Style */
 #carousel-section .carousel-caption {
-    right: 5%;
-    top: 0;
-    left: 5%;
-    z-index: 10;
+  right: 10%;
+  top: 0;
+  left: 10%;
+  z-index: 10;
+  color: #181818;
+  text-shadow: none;
+  font-size: 13px;
 }
 #carousel {
-  margin-top:0;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+#carousel .carousel-item{
+  height: 50vh;
 }
 </style>

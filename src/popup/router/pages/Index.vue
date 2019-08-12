@@ -1,5 +1,6 @@
 <template>
-  <b-container>
+<div>
+  <b-container class="skewed-bottom">
     <b-row id="search-section">
       <!-- 검색 창 -->
       <div id="search">
@@ -10,10 +11,10 @@
       </div>
     </b-row>
     <b-row id="social-btns-section">
-      <div class="manual">
+      <!-- <div class="manual">
         <div class="title">OG tag Preview</div>
         <div class="description">This is a preview of how your website will look when it's shared on social media and messenger.</div>
-      </div>
+      </div> -->
       <!-- 페이스북, 트위터, 네이버, 카카오톡 -->
       <div id="social-btns">
         <button
@@ -46,6 +47,8 @@
         </button>
       </div>
     </b-row>
+  </b-container>
+  <b-container>
     <b-row id="carousel-section">
       <div id="carousel">
         <b-carousel
@@ -75,7 +78,9 @@
           </b-carousel-slide>
           <!-- slack slide -->
           <b-carousel-slide img-blank>
-            <slack/>
+            <div class="card-container">
+              <slack/>
+            </div>
           </b-carousel-slide>
           <!-- line slide -->
           <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
@@ -83,10 +88,11 @@
           </b-carousel-slide>
         </b-carousel>
       </div>
-      <!-- table -->
-      </b-row>
+    </b-row>
+    </b-container>
+    <b-container class="skewed-top">
       <b-row>
-        <div class="manual" style="padding-left: 10%;padding-right: 10%;">
+        <div class="manual">
           <div class="title">
             OG tag Debugger
             <b-form-checkbox v-model="checked" name="check-button" switch></b-form-checkbox>
@@ -124,6 +130,7 @@
         </div>
     </b-row>
   </b-container>
+</div>
 </template>
 
 <script>
@@ -242,8 +249,40 @@ body {
 body > * {
   box-sizing: border-box !important;
 }
+.skewed-bottom{
+  position:relative;
+  background: #222;
+}
+.skewed-bottom:before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  top: 0;
+  left: 0;
+  transform: skewY(-6deg) translateY(20%);
+  z-index: -1;
+}
+.skewed-top{
+  position:relative;
+  background: #f6f6f6;
+}
+.skewed-top:before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f6f6f6;
+  top: 0;
+  left: 0;
+  transform: skewY(2deg) translateY(-2%);
+  z-index: -1;
+}
 .manual{
   margin: 5px 0 15px;
+  padding-left: 7%;
+  padding-right: 7%;
 }
 .manual .title{
   margin-bottom: 5px;
@@ -253,8 +292,7 @@ body > * {
 }
 .manual .description{
   font-size: 12px;
-  /* font-weight: 550; */
-  color: rgba(0, 0, 0, 0.6);
+  color: #181818;
 }
 .manual .custom-control.custom-switch{
   display: inline-block;
@@ -269,8 +307,8 @@ body > * {
 }
 #search-section,
 #social-btns-section {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 7%;
+  padding-right: 7%;
 }
 #search {
   width: 100%;
@@ -319,7 +357,6 @@ body > * {
 /* Carousel Buttons */
 #social-btns {
   width: 100%;
-  /* margin-top: 10px; */
 }
 #social-btns .social-btn {
   width: 45px;
@@ -332,40 +369,71 @@ body > * {
   background-color: #f6f6f6;
   text-align: center;
   color: rgba(0, 0, 0, 0.6);
-  /* box-shadow: rgba(66, 92, 89, 0.3) 0px 0px 8px; */
 }
 #social-btns .social-btn .social-icon {
   font-size: 23px;
 }
 #social-btns .social-btn:hover {
-  /* background-color: #f4f6f5; */
-  color: #181818; /*#3E4242;*/
+  color: #181818;
 }
 #social-btns .social-btn.selected-btn {
-  background-color: #ff5252; /*#425C59;*/
+  background-color: #ff5252;
   color: #fff;
 }
+
+/*  Carousel Style */
 #carousel {
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
+#carousel .carousel-indicators, 
+#carousel .carousel-control-next, 
+#carousel .carousel-control-prev{
+  display: none;
+}
+.card-container{
+  padding: 3%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 24px -10px rgba(0,0,0,0.5);
+}
+#carousel-section .carousel-caption {
+  position:relative;
+  width: 94%;
+  right: 3%;
+  top: 0;
+  bottom: 0;
+  left: 3%;
+  z-index: 10;
+  padding: 3%;
+  color: #181818;
+  text-shadow: none;
+  font-size: 13px;
+  overflow: hidden;
+}
+#carousel .carousel-item > img{
+  min-height: 0;
+  max-height: 0;
+}
+
 /* OG TAG LIST */
 #og-container {
   width: 100%;
 }
 #og-container .og-row {
-  padding: 15px 10%;
+  padding: 15px 7%;
   font-size: 12px;
 }
-#og-container .og-row:nth-child(2n-1) {
-  /* padding: 15px 10%; */
-  background-color: #f6f6f6;
-}
+/* #og-container .og-row:nth-child(2n-1) {
+  background-color: #fff;
+} */
 #og-container .og-header {
   margin-bottom: 8px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.03rem;
-  color: #ff5252;/*rgba(0,0,0,.6);*/
+  color: #ff5252;
 }
 #og-container .og-content {
   font-size: 14px;
@@ -373,22 +441,5 @@ body > * {
 }
 #og-container  .og-image img{
   width:100%;
-}
-/*  Carousel Style */
-#carousel-section .carousel-caption {
-  right: 10%;
-  top: 0;
-  left: 10%;
-  z-index: 10;
-  color: #181818;
-  text-shadow: none;
-  font-size: 13px;
-}
-#carousel {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-#carousel .carousel-item{
-  height: 50vh;
 }
 </style>

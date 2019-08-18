@@ -1,10 +1,10 @@
 <template>
   <div id="slack-card">
-    <div class="card-body">
-      <div class="slack-contents" :class="{'exist-image': chrome_data.og_image != ''}">
+    <div class="slack-card-body">
+      <div class="slack-contents" :class="{'exist-image': chrome_data.og_image != '' && isSquare}">
         <div class="slack-header">
           <img v-if="chrome_data.favicon != '' || chrome_data.og_image != ''" :src="chrome_data.favicon || chrome_data.og_image" class="favicon" />
-          <span class="site-name">{{ chrome_data.og_site_name || chrome_data.url.split('/')[2] }}</span>
+          <span class="site-name">{{ chrome_data.og_site_name || chrome_data.url.split('/')[2].split('www.').reverse()[0] }}</span>
         </div>
         <div class="title">
           <a :href="chrome_data.url">{{ chrome_data.og_title || chrome_data.title }}</a>
@@ -15,7 +15,7 @@
         <img :src="chrome_data.og_image"/>
       </div>
     </div>  
-    <div class="card-img-2" v-if="chrome_data.og_image != '' && !isSquare">
+    <div class="card-img-2" v-if="chrome_data.og_image != '' && !isSquare" :class="{'vertical-img': isBigVertical}">
       <img :src="chrome_data.og_image"/>
     </div>
   </div>
@@ -30,6 +30,7 @@ export default {
     return {
       chrome_data : {},
       isSquare : true,
+      isBigVertical : false,
     }
   },
   methods:{
@@ -48,6 +49,7 @@ export default {
     },
     setIsSquare(w,h){
       this.isSquare = Math.abs(w-h) <= 10 ? true : false
+      if(h > w+10) this.isBigVertical = true
     }
   },
   created(){
@@ -63,9 +65,6 @@ export default {
   min-height: 75px;
   overflow: hidden;
 }
-#slack-card .card-body{
-  padding: 0;
-}
 #slack-card::before{
   content: "";
   position:absolute;
@@ -76,7 +75,7 @@ export default {
   border-radius: 8px;
 }
 #slack-card .slack-header, #slack-card .title{
-  font-weight:600;
+  font-weight:700;
 }
 #slack-card .slack-header .favicon{
   height: 16px;
@@ -92,7 +91,7 @@ export default {
   color: #1264a3!important;
 }
 .slack-contents{
-  padding-left: 12px;
+  padding-left: 15px;
   padding-right: 12px;
 }
 .slack-contents.exist-image{
@@ -123,7 +122,17 @@ export default {
 #slack-card .card-img-2 img{
   width:360px;
 }
+#slack-card .vertical-img{
+  width: 40%;
+}
+#slack-card .vertical-img img{
+  width: 100%;
+}
+#slack-card .slack-header{
+  margin-bottom: 3px; 
+}
 #slack-card .description{
+  margin-top: 3px; 
   word-break: break-word;
 }
 </style>

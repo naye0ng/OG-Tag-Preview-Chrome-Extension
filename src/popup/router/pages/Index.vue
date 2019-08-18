@@ -39,12 +39,21 @@ export default {
 
 <style>
 body {
-  width: 500px;
+  width: 550px;
 }
 body > * {
   box-sizing: border-box !important;
 }
 #preview{
   background: url('/images/stars.png') center center no-repeat,linear-gradient(to bottom,#181818, #111c27);
+}
+.two-line{
+  width:100%;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  line-height:20px;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 </style>

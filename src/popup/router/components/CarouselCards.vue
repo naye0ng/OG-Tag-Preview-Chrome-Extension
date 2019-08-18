@@ -46,8 +46,8 @@
         >
           <!-- facebook slide -->
           <b-carousel-slide img-blank>
-            <div class="facebook-card">
-              <p>hi i'm facebook!</p>
+            <div class="card-container">
+              <Facebook />
             </div>
           </b-carousel-slide>
           <!-- twitter slide -->
@@ -59,7 +59,7 @@
           </b-carousel-slide>
           <!-- slack slide -->
           <b-carousel-slide img-blank>
-            <div class="card-container">
+            <div class="card-container padding-3per">
               <Slack />
             </div>
           </b-carousel-slide>
@@ -75,16 +75,18 @@
 
 <script>
 import Vue from 'vue'
+import Facebook from './cards/Facebook'
 import Slack from './cards/Slack'
 
 export default {
   data() {
     return {
-      slide: 2,
+      slide: 0,
       sliding: false,
     }
   },
   components: {
+    Facebook,
     Slack,
   },
   methods:{
@@ -146,7 +148,7 @@ export default {
 
 /*  Carousel Style */
 .carousel-wrap{
-  padding: 7%;
+  min-width: 100%;
   min-height: 300px;
 }
 #carousel {
@@ -158,10 +160,12 @@ export default {
   display: none;
 }
 .card-container{
-  padding: 3%;
   overflow: hidden;
   background: #fff;
   border-radius: 5px;
+}
+.padding-3per{
+  padding: 3%;
 }
 #carousel .carousel-caption {
   position: relative;
@@ -180,5 +184,8 @@ export default {
 #carousel .carousel-item > img{
   min-height: 0;
   max-height: 0;
+}
+#carousel .carousel-item {
+  padding: 5%;
 }
 </style>

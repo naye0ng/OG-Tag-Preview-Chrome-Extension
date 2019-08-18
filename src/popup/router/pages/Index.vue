@@ -44,4 +44,7 @@ body {
 body > * {
   box-sizing: border-box !important;
 }
+#preview{
+  background: url('/images/stars.png') center center no-repeat,linear-gradient(to bottom,#181818, #111c27);
+}
 </style>

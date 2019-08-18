@@ -131,16 +131,16 @@ export default {
   border: none;
   background-color: #f6f6f6;
   text-align: center;
-  color: rgba(0, 0, 0, 0.6);
+  color: #111c27;
 }
 #social-btns .social-btn .social-icon {
   font-size: 23px;
 }
 #social-btns .social-btn:hover {
-  color: #181818;
+  color: #82ad43;
 }
 #social-btns .social-btn.selected-btn {
-  background-color: #ff5252;
+  background: #82ad43;
   color: #fff;
 }
 
@@ -162,25 +162,23 @@ export default {
   overflow: hidden;
   background: #fff;
   border-radius: 5px;
-  /* box-shadow: 0 0 24px -10px rgba(0,0,0,0.5); */
 }
 #carousel .carousel-caption {
-  position:relative;
-  width: 94%;
-  right: 3%;
+  position: relative;
+  width: 100%;
+  right: 0;
   top: 0;
   bottom: 0;
-  left: 3%;
+  left: 0;
   z-index: 10;
-  padding: 3%;
+  padding: 0;
   color: #181818;
   text-shadow: none;
   font-size: 13px;
-  overflow: hidden;
+  overflow: hidden; 
 }
 #carousel .carousel-item > img{
   min-height: 0;
   max-height: 0;
 }
-
 </style>

@@ -54,9 +54,9 @@ export default {
   padding-left: 15px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border-left: 1.5px solid rgba(0, 0, 0, 0.6);
-  border-top: 1.5px solid rgba(0, 0, 0, 0.6);
-  border-bottom: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-left: 1.5px solid #82ad43;
+  border-top: 1.5px solid #82ad43;
+  border-bottom: 1.5px solid #82ad43;
   border-right: none;
   color: rgba(0, 0, 0, 0.6);
   font-size: 13px;
@@ -69,20 +69,23 @@ export default {
   margin: 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  border-right: 1.5px solid rgba(0, 0, 0, 0.6);
-  border-top: 1.5px solid rgba(0, 0, 0, 0.6);
-  border-bottom: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-right: 1.5px solid #82ad43;
+  border-top: 1.5px solid #82ad43;
+  border-bottom: 1.5px solid #82ad43;
   border-left: none;
-  border: 1.5px solid rgba(0, 0, 0, 0.6);
-  color: rgba(0, 0, 0, 0.6);
+  background-color: #82ad43;
+  color: #fff;
 }
 #search input.search-string:focus {
-  border-color: #ff5252;
-  color: #181818;
+  color: #111c27;
 }
 #search input.search-string:focus + .search-btn {
-  border-color: #ff5252;
-  background-color: #ff5252;
-  color: #ffffff;
+  background-color: #82ad43;
+  color: #fff;
+}
+#search .search-btn:hover{
+  border: #688a35;
+  background-color: #688a35;
+  color: #fff;
 }
 </style>

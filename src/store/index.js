@@ -9,8 +9,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    url : '',
     metaData : {},
-    foo: 'bar',
+    // foo: 'bar',
   },
   getters,
   mutations,

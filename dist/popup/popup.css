@@ -1,39 +1,7 @@
 
-body {
-  width: 500px;
-}
-body > * {
-  box-sizing: border-box !important;
-}
-.manual{
-  margin: 5px 0 15px;
-}
-.manual .title{
-  margin-bottom: 5px;
-  font-size: 15px;
-  font-weight: 550;
-  color: #181818;
-}
-.manual .description{
-  font-size: 12px;
-  /* font-weight: 550; */
-  color: rgba(0, 0, 0, 0.6);
-}
-.manual .custom-control.custom-switch{
-  display: inline-block;
-  margin-left: 10px;
-}
-.custom-control-input:checked ~ .custom-control-label::before {
-    border-color: #ff5252!important;
-    background-color: #ff5252!important;
-}
-.custom-control-input:focus ~ .custom-control-label::before{
-  box-shadow: none!important;
-}
-#search-section,
-#social-btns-section {
-  padding-left: 10%;
-  padding-right: 10%;
+.search-wrap {
+  padding-left: 7%;
+  padding-right: 7%;
 }
 #search {
   width: 100%;
@@ -79,10 +47,200 @@ body > * {
   background-color: #ff5252;
   color: #ffffff;
 }
-/* Carousel Buttons */
+
+
+#slack-card{
+  position: relative;
+  line-height:1.46666667;
+  text-align: left;
+  min-height: 75px;
+  overflow: hidden;
+}
+#slack-card .card-body{
+  padding: 0;
+}
+#slack-card::before{
+  content: "";
+  position:absolute;
+  width: 4px;
+  height: 100%;
+  left: 0;
+  background-color: #ddd;
+  border-radius: 8px;
+}
+#slack-card .slack-header, #slack-card .title{
+  font-weight:600;
+}
+#slack-card .slack-header .favicon{
+  height: 16px;
+  margin-bottom: 3px;
+  margin-right: 4px;
+}
+#slack-card .slack-header .favicon img{
+  width:15px;
+  height:15px;
+}
+#slack-card .title a{
+  color: #1264a3!important;
+}
+.slack-contents{
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.slack-contents.exist-image{
+  width: calc(100% - 70px)
+}
+#slack-card .card-img{
+  position: absolute;
+  top:5px;
+  right:0;
+  width:70px;
+  height: 70px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+#slack-card .card-img img{
+  width:70px;
+  height: 70px;
+}
+#slack-card .card-img-2{
+  overflow: hidden;
+  width:360px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  margin-left : 15px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+}
+#slack-card .card-img-2 img{
+  width:360px;
+}
+#slack-card .description{
+  word-break: break-word;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  Social Buttons Style */
+.social-btns-wrap{
+  padding-left: 7%;
+  padding-right: 7%;
+}
 #social-btns {
   width: 100%;
-  /* margin-top: 10px; */
 }
 #social-btns .social-btn {
   width: 45px;
@@ -95,72 +253,65 @@ body > * {
   background-color: #f6f6f6;
   text-align: center;
   color: rgba(0, 0, 0, 0.6);
-  /* box-shadow: rgba(66, 92, 89, 0.3) 0px 0px 8px; */
 }
 #social-btns .social-btn .social-icon {
   font-size: 23px;
 }
 #social-btns .social-btn:hover {
-  /* background-color: #f4f6f5; */
-  color: #181818; /*#3E4242;*/
+  color: #181818;
 }
 #social-btns .social-btn.selected-btn {
-  background-color: #ff5252; /*#425C59;*/
+  background-color: #ff5252;
   color: #fff;
+}
+
+/*  Carousel Style */
+.carousel-wrap{
+  padding: 7%;
+  min-height: 300px;
 }
 #carousel {
-  margin-top: 50px;
-}
-/* OG TAG LIST */
-#og-container {
   width: 100%;
 }
-#og-container .og-row {
-  padding: 15px 10%;
-  font-size: 12px;
+#carousel .carousel-indicators, 
+#carousel .carousel-control-next, 
+#carousel .carousel-control-prev{
+  display: none;
 }
-#og-container .og-row:nth-child(2n-1) {
-  /* padding: 15px 10%; */
-  background-color: #f6f6f6;
+.card-container{
+  padding: 3%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  /* box-shadow: 0 0 24px -10px rgba(0,0,0,0.5); */
 }
-#og-container .og-header {
-  margin-bottom: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.03rem;
-  color: #ff5252;/*rgba(0,0,0,.6);*/
-}
-#og-container .og-content {
-  font-size: 14px;
-  font-weight: 500;
-}
-#og-container  .og-image img{
-  width:100%;
-}
-/* #og-container{
-  width:100%;
-  margin-top: 130px;
-  padding: 20px;
+#carousel .carousel-caption {
   position:relative;
-  background-color: #425c59;
-  color: #fff;
-  font-size: 12px;
+  width: 94%;
+  right: 3%;
+  top: 0;
+  bottom: 0;
+  left: 3%;
+  z-index: 10;
+  padding: 3%;
+  color: #181818;
+  text-shadow: none;
+  font-size: 13px;
+  overflow: hidden;
 }
-#og-container::before{
-  content:'';
-  z-index: -1;
-  position: absolute;
-  width: 100%;
-  height:130px;
-  top:-65px;
-  left:0;
-  background-color: #425c59;
-  border-top-left-radius: 50%;
+#carousel .carousel-item > img{
+  min-height: 0;
+  max-height: 0;
 }
-#og-container .og-header{
-  font-weight: 600;
-  letter-spacing: 0.08rem;
-} */
+
+
+
+body {
+  width: 500px;
+}
+body > * {
+  box-sizing: border-box !important;
+}
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)

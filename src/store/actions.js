@@ -5,6 +5,7 @@ import cheerio from 'cheerio'
 //   commit(types.UPDATE_FOO, payload);
 // }
 export const setUrl = ({ commit }, payload) => {
+  console.log(payload)
   commit(types.UPDATE_URL, payload);
   getMetaTags({ commit },payload)
 }
@@ -12,8 +13,9 @@ export const setUrl = ({ commit }, payload) => {
 //   commit(types.UPDATE_META_DATA, payload);
 // }
 // web crawling
-function getMetaTags({ commit },url){
+function getMetaTags({ commit }, url){
   var chrome_data = {}
+  chrome_data['url'] = url
   axios.get(url)
     .then(function (response) {
       var expTestUrl = /^(https?:\/\/)/

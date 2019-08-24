@@ -51,11 +51,10 @@
             </div>
           </b-carousel-slide>
           <!-- twitter slide -->
-          <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-            <p>
-              1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-              a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
-            </p>
+          <b-carousel-slide img-blank>
+            <div class="min-card-container">
+              <Twitter />
+            </div>
           </b-carousel-slide>
           <!-- slack slide -->
           <b-carousel-slide img-blank>
@@ -64,8 +63,10 @@
             </div>
           </b-carousel-slide>
           <!-- line slide -->
-          <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-            <p>3</p>
+          <b-carousel-slide img-blank>
+            <div class="min-card-container">
+              <LineMessenger />
+            </div>
           </b-carousel-slide>
         </b-carousel>
       </div>
@@ -76,7 +77,9 @@
 <script>
 import Vue from 'vue'
 import Facebook from './cards/Facebook'
+import Twitter from './cards/Twitter'
 import Slack from './cards/Slack'
+import LineMessenger from './cards/Line'
 
 export default {
   data() {
@@ -87,7 +90,9 @@ export default {
   },
   components: {
     Facebook,
+    Twitter,
     Slack,
+    LineMessenger,
   },
   methods:{
     onSlideStart(slide) {
@@ -149,10 +154,14 @@ export default {
 /*  Carousel Style */
 .carousel-wrap{
   min-width: 100%;
-  min-height: 300px;
+  min-height: 400px;
 }
 #carousel {
   width: 100%;
+}
+#carousel .col, #carousel .row, #carousel .col-3{
+  margin: 0;
+  padding:0;
 }
 #carousel .carousel-indicators, 
 #carousel .carousel-control-next, 
@@ -160,6 +169,13 @@ export default {
   display: none;
 }
 .card-container{
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+}
+.min-card-container{
+  margin-left:7%;
+  margin-right:7%;
   overflow: hidden;
   background: #fff;
   border-radius: 5px;

@@ -1,6 +1,6 @@
 <template>
   <div id="facebook-card">
-    <div class="card-img" v-if="chrome_data.og_image != '' && !isSquare" :class="{'vertical-img': isBigVertical}">
+    <div class="card-img rectangle-img" v-if="chrome_data.og_image != '' && !isSquare" :class="{'vertical-img': isBigVertical}">
       <img :src="chrome_data.og_image"/>
     </div>
     <div class="facebook-card-body">
@@ -59,10 +59,6 @@ export default {
   text-align: left;
   color: #4b4f56;
 }
-#facebook-card .col, #facebook-card .row, #facebook-card .col-3{
-  margin: 0;
-  padding:0;
-}
 #facebook-card .card-img {
   overflow: hidden;
   border-radius: 0;
@@ -70,6 +66,13 @@ export default {
 #facebook-card .card-img img{
   width: 100%;
   height:100%;
+}
+#facebook-card .rectangle-img{
+  height:220px;
+}
+#facebook-card .rectangle-img img{
+  width: 100%;
+  height:auto;
 }
 #facebook-card .vertical-img{
   width: 100%;

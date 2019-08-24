@@ -1,8 +1,13 @@
 <template> 
-  <section id="preview">
-    <SearchBar />
-    <CarouselCards />
-  </section>
+  <div>
+    <section id="preview">
+      <SearchBar />
+      <CarouselCards />
+    </section>
+    <section id="debug">
+      <DebugTool />
+    </section>
+  </div>
 </template>
 
 <script>
@@ -10,6 +15,7 @@ import Vue from 'vue'
 import store from '../../../store'
 import SearchBar from '../components/SearchBar'
 import CarouselCards from '../components/CarouselCards'
+import DebugTool from '../components/DebugTool'
 
 export default {
   data() {
@@ -19,6 +25,7 @@ export default {
   components : {
     SearchBar,
     CarouselCards,
+    DebugTool,
   },
   methods: {
     getCurrentTabUrl() {
@@ -40,12 +47,19 @@ export default {
 <style>
 body {
   width: 550px;
+  background: url('/images/stars.png') center center no-repeat,linear-gradient(to bottom,#181818, #111c27);
 }
 body > * {
   box-sizing: border-box !important;
 }
-#preview{
-  background: url('/images/stars.png') center center no-repeat,linear-gradient(to bottom,#181818, #111c27);
+.one-line{
+  width:100%;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+  line-height:20px;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .two-line{
   width:100%;

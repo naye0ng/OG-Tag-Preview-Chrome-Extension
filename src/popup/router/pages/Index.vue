@@ -46,6 +46,7 @@ export default {
 
 <style>
 body {
+  position: relative;
   width: 550px;
   background: url('/images/stars.png') center center no-repeat,linear-gradient(to bottom,#181818, #111c27);
 }

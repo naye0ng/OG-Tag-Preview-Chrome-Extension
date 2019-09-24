@@ -466,27 +466,55 @@
 }
 
 
-.debug-btn{
-  cursor: pointer;
-  max-width:20%!important;
-  min-width:20%!important;
-  text-align: center;
-  padding: 15px 0;
-  margin-right:3%;
-  background-color: #82ad43;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color:#fff;
-  font-weight: 600;
-  letter-spacing: 0.05rem;
-  font-size:12px;
+#debug-container {
+    position: relative;
+    padding: 3% 7%;
+    background-color: #82ad43;
+    /* border-top-left-radius: 10%; */
 }
-.debug-btn:hover{
-  background-color: #688a35;
+#debug-container:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    top: -25px;
+    left: 0;
+    background-color: #82ad43;
+    transform: skew(0deg, 4deg);
+}
+#debug-container .row,
+#debug-container .col {
+    margin: 0;
+    padding: 0;
+}
+.container-title {
+    margin-bottom: 5%;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+}
+.info-card {
+    margin: 7% 0 3%;
+    padding: 3% 3%;
+    background-color: #f5f6f7;
+    border-radius: 5px;
+}
+.tag-sect{
+  padding: 2%;
+}
+.tag-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+.tag-value {
+    font-size: 13.5px;
+    color: #4b4f56;
 }
 
 
 body {
+  position: relative;
   width: 550px;
   background: url('/images/stars.png') center center no-repeat,linear-gradient(to bottom,#181818, #111c27);
 }

@@ -1,34 +1,13 @@
 <template>
     <b-container id="debug-container">
         <div class="container-title">
-          <font-awesome-icon icon="bug"/>
-          OG Tag Debugger
+          <font-awesome-icon icon="bug" /> OG Tag Debugger
         </div>
         <div class="info-card">
             <div class="tag-sect" v-for="(value, key)  in chrome_data" v-if="value">
-                <div class="tag-title">{{ key }}</div>
-                <div class="tag-value">{{ value }}</div>
+              <div class="tag-title">{{ key }}</div>
+              <div class="tag-value">{{ value }}</div>
             </div>
-            <!-- <div class="tag-sect">
-                <div class="tag-title">og:url</div>
-                <div class="tag-value">{{ chrome_data.og_url }}</div>
-            </div>
-            <div class="tag-sect">
-                <div class="tag-title">og:title</div>
-                <div class="tag-value">{{ chrome_data.og_title }}</div>
-            </div>
-            <div class="tag-sect">
-                <div class="tag-title">og:description</div>
-                <div class="tag-value">{{ chrome_data.og_description }}</div>
-            </div>
-            <div class="tag-sect">
-                <div class="tag-title">og:image</div>
-                <div class="tag-value">{{ chrome_data.og_image }}</div>
-            </div>
-            <div class="tag-sect">
-                <div class="tag-title">og:twitter_card</div>
-                <div class="tag-value">{{ chrome_data.twitter_card }}</div>
-            </div> -->
         </div>
     </b-container>
 </template>
@@ -63,6 +42,7 @@ export default {
     background-color: #82ad43;
     /* border-top-left-radius: 10%; */
 }
+
 #debug-container:before {
     z-index: -1;
     content: '';
@@ -94,13 +74,16 @@ export default {
     background-color: #f5f6f7;
     border-radius: 5px;
 }
-.tag-sect{
-  padding: 2%;
+
+.tag-sect {
+    padding: 2%;
 }
+
 .tag-title {
     font-size: 13px;
     font-weight: 600;
 }
+
 .tag-value {
     font-size: 13.5px;
     color: #4b4f56;
